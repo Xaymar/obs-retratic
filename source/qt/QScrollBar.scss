@@ -1,0 +1,96 @@
+// Qt only applies a QScrollBar style if every sub-control is styled, so all of them are set here.
+
+QScrollBar {
+	margin: 0px;
+	padding: 0px;
+	border: 0px solid transparent;
+	background-color: yuv709cc($theme-color-bg, $theme-layer2-bg-lum, $theme-layer2-bg-sat);
+
+	&:disabled {
+		background-color: yuv709cc($theme-color-bg, $theme-layer2-bg-lum * $theme-disabled-lum, $theme-layer2-bg-sat * $theme-disabled-sat);
+	}
+
+	// Margins hold the arrow buttons at both ends. The transparent border on the content side is a
+	// gap between the scrolled content and the bar; Qt counts it in width/height, so add it there.
+	$gap: 3px;
+	background-clip: padding;
+	&:vertical {
+		width: $theme-size-scrollbar + $gap;
+		margin: $theme-size-scrollbar 0px;
+		border-left: $gap solid transparent;
+	}
+	&:horizontal {
+		height: $theme-size-scrollbar + $gap;
+		margin: 0px $theme-size-scrollbar;
+		border-top: $gap solid transparent;
+	}
+
+	&::handle,
+	&::add-line,
+	&::sub-line {
+		border: 0px solid transparent;
+		border-radius: $theme-curve-radius;
+		background-color: yuv709cc($theme-color-accent, $theme-layer5-bg-lum, $theme-layer5-bg-sat);
+
+		&:hover {
+			background-color: yuv709cc($theme-color-accent, $theme-layer5-bg-lum * $theme-hover-lum, $theme-layer5-bg-sat * $theme-hover-sat);
+		}
+		&:pressed {
+			background-color: yuv709cc($theme-color-accent, $theme-layer5-bg-lum * $theme-pressed-lum, $theme-layer5-bg-sat * $theme-pressed-sat);
+		}
+		&:disabled {
+			background-color: yuv709cc($theme-color-accent, $theme-layer5-bg-lum * $theme-disabled-lum, $theme-layer5-bg-sat * $theme-disabled-sat);
+		}
+	}
+
+	&::handle:vertical {
+		min-height: $theme-size-scrollbar;
+	}
+	&::handle:horizontal {
+		min-width: $theme-size-scrollbar;
+	}
+
+	&::add-line,
+	&::sub-line {
+		width: $theme-size-scrollbar;
+		height: $theme-size-scrollbar;
+		subcontrol-origin: margin;
+	}
+	&::sub-line:vertical {
+		subcontrol-position: top right;
+	}
+	&::add-line:vertical {
+		subcontrol-position: bottom right;
+	}
+	&::sub-line:horizontal {
+		subcontrol-position: bottom left;
+	}
+	&::add-line:horizontal {
+		subcontrol-position: bottom right;
+	}
+
+	&::up-arrow,
+	&::down-arrow,
+	&::left-arrow,
+	&::right-arrow {
+		width: $theme-size-scrollbar - 4px;
+		height: $theme-size-scrollbar - 4px;
+	}
+	&::up-arrow {
+		image: $image-arrow-up;
+	}
+	&::down-arrow {
+		image: $image-arrow-down;
+	}
+	&::left-arrow {
+		image: $image-arrow-left;
+	}
+	&::right-arrow {
+		image: $image-arrow-right;
+	}
+
+	&::add-page,
+	&::sub-page {
+		background: transparent;
+	}
+}

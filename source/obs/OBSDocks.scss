@@ -1,0 +1,27 @@
+// Content padding for the Scene Transitions and Controls docks.
+#controlsFrame,
+#transitionsFrame {
+	padding: 4px;
+}
+#controlsFrame QPushButton,
+#transitionsFrame QComboBox,
+#transitionsFrame QAbstractSpinBox,
+#transitionsFrame QPushButton {
+	margin: 2px 1px;
+}
+
+
+// Dock content is a translucent layer over the dock background, like QGroupBox, so it covers the
+// fixed 1px layout margin OBS puts around the Scenes/Sources/Mixer contents.
+QDockWidget > QWidget {
+	background-color: color.adjust(yuv709cc($theme-color-bg, $theme-layer3-bg-lum, $theme-layer3-bg-sat), $alpha: -.75);
+}
+// The selector above also matches the dock's float and close buttons.
+QDockWidget > QAbstractButton {
+	background: transparent;
+}
+// Lists show the dock layer instead of painting their own opaque palette color.
+SceneTree,
+SourceTree {
+	background: transparent;
+}

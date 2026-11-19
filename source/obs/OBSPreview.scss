@@ -1,0 +1,33 @@
+// Zoom out / zoom percentage / zoom in / scaling mode row under the preview.
+// OBS fixes the zoom buttons to 20x16 in its .ui file; min/max sizes here override that.
+#previewZoomOutButton,
+#previewZoomInButton {
+	$margin: 0px;
+	$padding: 3px;
+	$border: 0px;
+	margin: $margin;
+	padding: $padding;
+	min-width: contentWidth($theme-size-controls, $margin, $padding, $border);
+	max-width: contentWidth($theme-size-controls, $margin, $padding, $border);
+	min-height: contentHeight($theme-size-controls, $margin, $padding, $border);
+	max-height: contentHeight($theme-size-controls, $margin, $padding, $border);
+	icon-size: contentHeight($theme-size-controls, $margin, $padding, $border);
+}
+
+#previewScalePercent {
+	$margin: 0px;
+	$padding: 0px 5px;
+	$border: 0px;
+	margin: $margin;
+	padding: $padding;
+	min-height: contentHeight($theme-size-controls, $margin, $padding, $border);
+	max-height: contentHeight($theme-size-controls, $margin, $padding, $border);
+	qproperty-alignment: AlignCenter;
+	background: transparent;
+	color: yuv709cc($theme-color-fg, $theme-layer0-fg-lum, $theme-layer0-fg-sat);
+}
+
+#previewScalingMode {
+	margin-left: 2px;
+	max-height: contentHeight($theme-size-controls, 0px, 2px 5px, 0px);
+}

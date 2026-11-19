@@ -1,0 +1,116 @@
+// Audio Mixer: source name buttons and the mute/monitor buttons.
+VolumeName {
+	padding: 1px 0px;
+	border: 1px solid transparent;
+	border-radius: $theme-curve-radius;
+	background: transparent;
+	color: yuv709cc($theme-color-fg, $theme-layer0-fg-lum, $theme-layer0-fg-sat);
+
+	&:hover,
+	&:focus {
+		background-color: yuv709cc($theme-color-accent, $theme-layer5-bg-lum * $theme-hover-lum, $theme-layer5-bg-sat * $theme-hover-sat);
+	}
+}
+
+QPushButton.btn-mute,
+QPushButton.btn-monitor {
+	margin: 0px 1px;
+	padding: 2px;
+	// Qt ignores width/height on widgets, so fix the size with min/max. 2px padding on each side
+	// brings the button to the full control size.
+	min-width: $theme-size-controls - 4px;
+	max-width: $theme-size-controls - 4px;
+	min-height: $theme-size-controls - 4px;
+	max-height: $theme-size-controls - 4px;
+	icon-size: $theme-size-controls - 6px;
+	border: 0px solid transparent;
+	border-radius: $theme-curve-radius;
+	background-color: transparent;
+
+	&:hover,
+	&:focus {
+		background-color: yuv709cc($theme-color-accent, $theme-layer5-bg-lum * $theme-hover-lum, $theme-layer5-bg-sat * $theme-hover-sat);
+	}
+	&:pressed {
+		background-color: yuv709cc($theme-color-accent, $theme-layer5-bg-lum * $theme-pressed-lum, $theme-layer5-bg-sat * $theme-pressed-sat);
+	}
+}
+// OBS toggles a "checked" class on these instead of using :checked.
+QPushButton.btn-mute {
+	qproperty-icon: $image-audio-unmuted;
+}
+QPushButton.btn-mute.checked {
+	qproperty-icon: $image-audio-muted;
+}
+QPushButton.btn-mute.mute-warning {
+	qproperty-icon: url(#{$obs-icons}/unassigned.svg);
+}
+QPushButton.btn-monitor {
+	qproperty-icon: url(#{$obs-icons}/headphones-off.svg);
+}
+QPushButton.btn-monitor.checked {
+	qproperty-icon: url(#{$obs-icons}/headphones.svg);
+	background-color: yuv709cc($theme-color-accent, $theme-layer6-bg-lum, $theme-layer6-bg-sat);
+}
+
+// Each mixer entry is its own translucent box, like QGroupBox, so entries are visually separated.
+VolumeControl {
+	margin: 0px 0px 4px 0px;
+	padding: 2px 4px 4px 4px;
+	border: 1px solid color.adjust(yuv709cc($theme-color-bg, $theme-layer3-bg-lum, $theme-layer3-bg-sat), $alpha: -.5);
+	border-radius: $theme-curve-radius;
+	background-color: color.adjust(yuv709cc($theme-color-bg, $theme-layer3-bg-lum, $theme-layer3-bg-sat), $alpha: -.75);
+
+	QLabel {
+		background: transparent;
+	}
+
+	// Current volume ("0.0 dB").
+	#volLabel {
+		min-width: 48px;
+		margin-left: 4px;
+		qproperty-alignment: AlignCenter;
+		color: yuv709cc($theme-color-fg, $theme-layer3-fg-lum, $theme-layer3-fg-sat);
+	}
+
+}
+
+// "Active" / "Inactive" category headers.
+.mixer-category {
+	margin: 0px 4px;
+	padding: 0px;
+	color: yuv709cc($theme-color-fg, $theme-layer3-fg-lum * $theme-disabled-fg-lum, $theme-layer3-fg-sat * $theme-disabled-fg-sat);
+}
+
+VolumeName QLabel {
+	margin: 0px 4px;
+}
+
+#volMeterFrame {
+	padding: 0px 2px;
+}
+
+VolumeMeter {
+	// Tick labels and marks, readable on the dark background.
+	qproperty-majorTickColor: yuv709cc($theme-color-fg, $theme-layer3-fg-lum * $theme-disabled-fg-lum, $theme-layer3-fg-sat);
+	qproperty-minorTickColor: yuv709cc($theme-color-accent, $theme-layer5-bg-lum, $theme-layer5-bg-sat);
+	font-size: var(--font_small);
+}
+
+// Horizontal mixer rows: name + dB, then [mute | slider] and [monitor | meter].
+// OBS stacks the two buttons next to a frame holding the slider over the meter, so each button
+// gets the same height and gap as the row it belongs to.
+$mixer-gap: 4px;
+#hVolumeWidgets VolumeControl {
+	VolumeName {
+		margin-bottom: $mixer-gap;
+	}
+	QSlider,
+	QPushButton.btn-mute {
+		margin-bottom: $mixer-gap;
+	}
+	VolumeMeter {
+		min-height: $theme-size-controls;
+		max-height: $theme-size-controls;
+	}
+}

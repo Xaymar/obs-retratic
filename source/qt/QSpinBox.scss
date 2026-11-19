@@ -11,13 +11,14 @@ QSpinBox, QDoubleSpinBox {
 	border-radius: $theme-curve-radius;
 	min-width: contentWidth($theme-size-controls, $margin, $padding, $border);
 	min-height: contentHeight($theme-size-controls, $margin, $padding, $border);
-	background-color: yuv709cc($theme-color-bg, $theme-layer5-bg-lum, $theme-layer5-bg-sat);
+	background-color: yuv709cc($theme-color-accent, $theme-layer5-bg-lum, $theme-layer5-bg-sat);
 	color: yuv709cc($theme-color-fg, $theme-layer5-fg-lum, $theme-layer5-fg-sat);
 
+	// Same total width as the QComboBox drop-down button: 18px content + 2px padding per side.
 	&::up-arrow,
 	&::down-arrow {
-		width: $theme-size-controls;
-		height: math.div($theme-size-controls, 2);
+		width: contentWidth($theme-size-controls, 0px, 4px, 0px);
+		height: math.div($theme-size-controls, 2) - 2px;
 	}
 
 	&::up-arrow {
@@ -29,43 +30,42 @@ QSpinBox, QDoubleSpinBox {
 	}
 
 	&:focus {
-		background-color: yuv709cc($theme-color-bg, $theme-layer5-bg-lum * $theme-focus-lum, $theme-layer5-bg-sat * $theme-focus-sat);
+		background-color: yuv709cc($theme-color-accent, $theme-layer5-bg-lum * $theme-focus-lum, $theme-layer5-bg-sat * $theme-focus-sat);
 		color: yuv709cc($theme-color-fg, $theme-layer5-fg-lum * $theme-focus-lum, $theme-layer5-fg-sat * $theme-focus-sat);
 	}
 
 	&:hover {
-		background-color: yuv709cc($theme-color-bg, $theme-layer5-bg-lum * $theme-hover-lum, $theme-layer5-bg-sat * $theme-hover-sat);
+		background-color: yuv709cc($theme-color-accent, $theme-layer5-bg-lum * $theme-hover-lum, $theme-layer5-bg-sat * $theme-hover-sat);
 		color: yuv709cc($theme-color-fg, $theme-layer5-fg-lum * $theme-hover-lum, $theme-layer5-fg-sat * $theme-hover-sat);
 	}
 
 	&:disabled {
-		background-color: yuv709cc($theme-color-bg, $theme-layer5-bg-lum * $theme-disabled-lum, $theme-layer5-bg-sat * $theme-disabled-sat);
-		color: yuv709cc($theme-color-fg, $theme-layer5-fg-lum * $theme-disabled-lum, $theme-layer5-fg-sat * $theme-disabled-sat);
+		background-color: yuv709cc($theme-color-accent, $theme-layer5-bg-lum * $theme-disabled-lum, $theme-layer5-bg-sat * $theme-disabled-sat);
+		color: yuv709cc($theme-color-fg, $theme-layer5-fg-lum * $theme-disabled-fg-lum, $theme-layer5-fg-sat * $theme-disabled-fg-sat);
 	}
 
-	&:up-button,
-	&:down-button {
-		background-color: yuv709cc($theme-color-bg, $theme-layer6-bg-lum, $theme-layer6-bg-sat);
+	// "::" (sub-controls); a single ":" made these rules never match.
+	&::up-button,
+	&::down-button {
+		padding: 0px 2px;
+		width: contentWidth($theme-size-controls, 0px, 2px, 0px);
+		border: 0px solid transparent;
+		background-color: yuv709cc($theme-color-accent, $theme-layer6-bg-lum, $theme-layer6-bg-sat);
 		color: yuv709cc($theme-color-fg, $theme-layer6-fg-lum, $theme-layer6-fg-sat);
 
-		&:focus {
-			background-color: yuv709cc($theme-color-bg, $theme-layer6-bg-lum * $theme-focus-lum, $theme-layer6-bg-sat * $theme-focus-sat);
-			color: yuv709cc($theme-color-fg, $theme-layer6-fg-lum * $theme-focus-lum, $theme-layer6-fg-sat * $theme-focus-sat);
-		}
-
 		&:hover {
-			background-color: yuv709cc($theme-color-bg, $theme-layer6-bg-lum * $theme-hover-lum, $theme-layer6-bg-sat * $theme-hover-sat);
+			background-color: yuv709cc($theme-color-accent, $theme-layer6-bg-lum * $theme-hover-lum, $theme-layer6-bg-sat * $theme-hover-sat);
 			color: yuv709cc($theme-color-fg, $theme-layer6-fg-lum * $theme-hover-lum, $theme-layer6-fg-sat * $theme-hover-sat);
 		}
 
 		&:pressed {
-			background-color: yuv709cc($theme-color-bg, $theme-layer6-bg-lum * $theme-pressed-lum, $theme-layer6-bg-sat * $theme-pressed-sat);
+			background-color: yuv709cc($theme-color-accent, $theme-layer6-bg-lum * $theme-pressed-lum, $theme-layer6-bg-sat * $theme-pressed-sat);
 			color: yuv709cc($theme-color-fg, $theme-layer6-fg-lum, $theme-layer6-fg-sat);
 		}
 
 		&:disabled {
-			background-color: yuv709cc($theme-color-bg, $theme-layer6-bg-lum * $theme-disabled-lum, $theme-layer6-bg-sat * $theme-disabled-sat);
-			color: yuv709cc($theme-color-fg, $theme-layer6-fg-lum * $theme-disabled-lum, $theme-layer6-fg-sat * $theme-disabled-sat);
+			background-color: yuv709cc($theme-color-accent, $theme-layer6-bg-lum * $theme-disabled-lum, $theme-layer6-bg-sat * $theme-disabled-sat);
+			color: yuv709cc($theme-color-fg, $theme-layer6-fg-lum * $theme-disabled-fg-lum, $theme-layer6-fg-sat * $theme-disabled-fg-sat);
 		}
 	}
 }

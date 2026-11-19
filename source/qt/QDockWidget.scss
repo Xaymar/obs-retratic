@@ -9,23 +9,24 @@ QDockWidget {
 
 	&:disabled {
 		background-color: yuv709cc($theme-color-bg, $theme-layer0-bg-lum * $theme-disabled-lum, $theme-layer0-bg-sat * $theme-disabled-sat);
-		color: yuv709cc($theme-color-fg, $theme-layer0-fg-lum * $theme-disabled-lum, $theme-layer0-fg-sat * $theme-disabled-sat);
+		color: yuv709cc($theme-color-fg, $theme-layer0-fg-lum * $theme-disabled-fg-lum, $theme-layer0-fg-sat * $theme-disabled-fg-sat);
 	}
 	
 	&::title {
 		margin: 0px;
-		padding: 0px;
+		// Qt ignores min-height here; the bar is font height plus padding, so pad up to the title bar size.
+		padding: math.div($theme-size-titlebar - $theme-font-size * 1.25, 2) 0px;
 		min-height: $theme-size-titlebar;
 		border: 0px solid transparent;
 		border-radius: $theme-curve-radius;
-		background-color: yuv709cc($theme-color-bg, $theme-layer9-bg-lum, $theme-layer9-bg-sat);
+		background-color: yuv709cc($theme-color-accent, $theme-layer9-bg-lum, $theme-layer9-bg-sat);
 		color: yuv709cc($theme-color-fg, $theme-layer9-fg-lum, $theme-layer9-fg-sat);
 		vertical-align: center;
 		text-align: center;
 	
 		&:disabled {
-			background-color: yuv709cc($theme-color-bg, $theme-layer9-bg-lum * $theme-disabled-lum, $theme-layer9-bg-sat * $theme-disabled-sat);
-			color: yuv709cc($theme-color-fg, $theme-layer9-fg-lum * $theme-disabled-lum, $theme-layer9-fg-sat * $theme-disabled-sat);
+			background-color: yuv709cc($theme-color-accent, $theme-layer9-bg-lum * $theme-disabled-lum, $theme-layer9-bg-sat * $theme-disabled-sat);
+			color: yuv709cc($theme-color-fg, $theme-layer9-fg-lum * $theme-disabled-fg-lum, $theme-layer9-fg-sat * $theme-disabled-fg-sat);
 		}
 	}
 	
@@ -40,20 +41,20 @@ QDockWidget {
 		color: $theme-color-fg;
 		icon-size: $theme-size-titlebar - 3px; // FIXME! Qt adds 3px padding here no matter what.
 		
-		&:hover,
-		&:focus {
-			background-color: yuv709cc($theme-color-bg, $theme-layer5-bg-lum * $theme-hover-lum, $theme-layer5-bg-sat * $theme-hover-sat);
+		// No :focus here; the buttons would stay lit while anything in the dock has focus.
+		&:hover {
+			background-color: yuv709cc($theme-color-accent, $theme-layer5-bg-lum * $theme-hover-lum, $theme-layer5-bg-sat * $theme-hover-sat);
 			color: yuv709cc($theme-color-fg, $theme-layer5-fg-lum * $theme-hover-lum, $theme-layer5-fg-sat * $theme-hover-sat);
 		}
 		
 		&:pressed {
-			background-color: yuv709cc($theme-color-bg, $theme-layer5-bg-lum * $theme-pressed-lum, $theme-layer5-bg-sat * $theme-pressed-sat);
+			background-color: yuv709cc($theme-color-accent, $theme-layer5-bg-lum * $theme-pressed-lum, $theme-layer5-bg-sat * $theme-pressed-sat);
 			color: yuv709cc($theme-color-fg, $theme-layer5-fg-lum, $theme-layer5-fg-sat);
 		}
 		
 		&:disabled {
-			background-color: yuv709cc($theme-color-bg, $theme-layer5-bg-lum * $theme-disabled-lum, $theme-layer5-bg-sat * $theme-disabled-sat);
-			color: yuv709cc($theme-color-fg, $theme-layer5-fg-lum * $theme-disabled-lum, $theme-layer5-fg-sat * $theme-disabled-sat);
+			background-color: yuv709cc($theme-color-accent, $theme-layer5-bg-lum * $theme-disabled-lum, $theme-layer5-bg-sat * $theme-disabled-sat);
+			color: yuv709cc($theme-color-fg, $theme-layer5-fg-lum * $theme-disabled-fg-lum, $theme-layer5-fg-sat * $theme-disabled-fg-sat);
 		}
 	}
 }

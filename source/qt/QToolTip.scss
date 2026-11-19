@@ -1,0 +1,7 @@
+QToolTip {
+	padding: 2px 5px;
+	border: 1px solid yuv709cc($theme-color-accent, $theme-layer5-bg-lum, $theme-layer5-bg-sat);
+	border-radius: $theme-curve-radius;
+	background-color: yuv709cc($theme-color-bg, $theme-layer3-bg-lum, $theme-layer3-bg-sat);
+	color: yuv709cc($theme-color-fg, $theme-layer3-fg-lum, $theme-layer3-fg-sat);
+}

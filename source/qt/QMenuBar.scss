@@ -10,7 +10,7 @@ QMenuBar {
 	
 	&:disabled {
 		background-color: yuv709cc($theme-color-bg, $theme-layer1-bg-lum * $theme-disabled-lum, $theme-layer1-bg-sat * $theme-disabled-sat);
-		color: yuv709cc($theme-color-fg, $theme-layer1-fg-lum * $theme-disabled-lum, $theme-layer1-fg-sat * $theme-disabled-sat);
+		color: yuv709cc($theme-color-fg, $theme-layer1-fg-lum * $theme-disabled-fg-lum, $theme-layer1-fg-sat * $theme-disabled-fg-sat);
 	}
 	
 	&::item {
@@ -24,18 +24,18 @@ QMenuBar {
 		color: yuv709cc($theme-color-fg, $theme-layer5-fg-lum, $theme-layer5-fg-sat);
 		
 		&:selected {
-			background-color: yuv709cc($theme-color-bg, $theme-layer5-bg-lum * $theme-hover-lum, $theme-layer5-bg-sat * $theme-hover-sat);
+			background-color: yuv709cc($theme-color-accent, $theme-layer5-bg-lum * $theme-hover-lum, $theme-layer5-bg-sat * $theme-hover-sat);
 			color: yuv709cc($theme-color-fg, $theme-layer5-fg-lum * $theme-hover-lum, $theme-layer5-fg-sat * $theme-hover-sat);
 		}
 		
 		&:pressed {
-			background-color: yuv709cc($theme-color-bg, $theme-layer5-bg-lum * $theme-active-lum, $theme-layer5-bg-sat * $theme-active-sat);
+			background-color: yuv709cc($theme-color-accent, $theme-layer5-bg-lum * $theme-active-lum, $theme-layer5-bg-sat * $theme-active-sat);
 			color: yuv709cc($theme-color-fg, $theme-layer5-fg-lum * $theme-active-lum, $theme-layer5-fg-sat * $theme-active-sat);
 		}
 		
 		&:disabled {
 			background-color: yuv709cc($theme-color-bg, $theme-layer1-bg-lum * $theme-disabled-lum, $theme-layer1-bg-sat * $theme-disabled-sat);
-			color: yuv709cc($theme-color-fg, $theme-layer1-fg-lum * $theme-disabled-lum, $theme-layer1-fg-sat * $theme-disabled-sat);
+			color: yuv709cc($theme-color-fg, $theme-layer1-fg-lum * $theme-disabled-fg-lum, $theme-layer1-fg-sat * $theme-disabled-fg-sat);
 		}
 	}
 }

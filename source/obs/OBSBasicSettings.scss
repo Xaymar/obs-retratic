@@ -1,0 +1,6 @@
+// Settings page list (General, Appearance, ...) uses the same translucent layer as QGroupBox.
+OBSBasicSettings QListWidget#listWidget {
+	border: 1px solid color.adjust(yuv709cc($theme-color-bg, $theme-layer3-bg-lum, $theme-layer3-bg-sat), $alpha: -.5);
+	border-radius: $theme-curve-radius;
+	background-color: color.adjust(yuv709cc($theme-color-bg, $theme-layer3-bg-lum, $theme-layer3-bg-sat), $alpha: -.75);
+}

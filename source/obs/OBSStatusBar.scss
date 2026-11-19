@@ -1,0 +1,10 @@
+// OBS's StatusBarWidget.ui forces a 34px minimum height; bring it back to the unified status bar size.
+StatusBarWidget {
+	min-height: $theme-size-statusbar;
+	max-height: $theme-size-statusbar;
+}
+StatusBarWidget > QFrame {
+	margin: 0px;
+	padding: 0px 6px;
+	border: 0px solid transparent;
+}

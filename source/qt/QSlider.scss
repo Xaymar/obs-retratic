@@ -1,0 +1,65 @@
+// Darker, inset groove (same look as the QCheckBox indicator) with a button-colored handle.
+$slider-groove: 6px;
+$slider-handle: math.div($theme-size-controls, 2);
+// Negative margin lets the handle stick out of the groove to the full control size. The handle is
+// measured from the groove's content (inside its 1px border), hence the - 2px.
+$slider-handle-overhang: math.div($slider-groove - 2px - $theme-size-controls, 2);
+
+QSlider {
+	background: transparent;
+
+	&:horizontal {
+		min-height: $theme-size-controls;
+	}
+	&:vertical {
+		min-width: $theme-size-controls;
+	}
+
+	&::groove {
+		border: 1px inset yuv709cc($theme-color-accent, $theme-layer5-bg-lum * $theme-pressed-lum, $theme-layer5-bg-sat * $theme-pressed-sat);
+		border-radius: $theme-curve-radius;
+		background-color: yuv709cc($theme-color-bg, $theme-layer2-bg-lum * $theme-pressed-lum, $theme-layer2-bg-sat * $theme-pressed-sat);
+
+		&:disabled {
+			background-color: yuv709cc($theme-color-bg, $theme-layer2-bg-lum * $theme-disabled-lum, $theme-layer2-bg-sat * $theme-disabled-sat);
+		}
+	}
+	&::groove:horizontal {
+		height: $slider-groove - 2px;
+	}
+	&::groove:vertical {
+		width: $slider-groove - 2px;
+	}
+
+	// Filled part (left of a horizontal handle, below a vertical one).
+	&::sub-page:horizontal,
+	&::add-page:vertical {
+		border: 1px inset yuv709cc($theme-color-accent, $theme-layer5-bg-lum * $theme-pressed-lum, $theme-layer5-bg-sat * $theme-pressed-sat);
+		border-radius: $theme-curve-radius;
+		background-color: yuv709cc($theme-color-accent, $theme-layer5-bg-lum * $theme-pressed-lum, $theme-layer5-bg-sat * $theme-pressed-sat);
+	}
+
+	&::handle {
+		border: 0px solid transparent;
+		border-radius: $theme-curve-radius;
+		background-color: yuv709cc($theme-color-accent, $theme-layer6-bg-lum, $theme-layer6-bg-sat);
+
+		&:hover {
+			background-color: yuv709cc($theme-color-accent, $theme-layer6-bg-lum * $theme-hover-lum, $theme-layer6-bg-sat * $theme-hover-sat);
+		}
+		&:pressed {
+			background-color: yuv709cc($theme-color-accent, $theme-layer6-bg-lum * $theme-pressed-lum, $theme-layer6-bg-sat * $theme-pressed-sat);
+		}
+		&:disabled {
+			background-color: yuv709cc($theme-color-accent, $theme-layer6-bg-lum * $theme-disabled-lum, $theme-layer6-bg-sat * $theme-disabled-sat);
+		}
+	}
+	&::handle:horizontal {
+		width: $slider-handle;
+		margin: $slider-handle-overhang 0px;
+	}
+	&::handle:vertical {
+		height: $slider-handle;
+		margin: 0px $slider-handle-overhang;
+	}
+}

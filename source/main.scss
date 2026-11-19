@@ -1,4 +1,4 @@
-// Ocean Blue 
+// Retratic
 // https://www.xaymar.com/projects/obs/ocean-blue/
 //
 // Copyright 2020-2023 Michael Fabian 'Xaymar' Dirks <info@xaymar.com>
@@ -23,21 +23,28 @@
 // CONFIGURATION STARTS HERE
 //--------------------------------------------------------------------------------//
 // Background color at medium brightness.
-$theme-color-bg: hsl(205, 100%, 50%);
+$theme-color-bg: hsl(212, 100%, 50%) !default;
+// Highlight color at medium brightness: controls, selections, handles and dock titles (layers 5, 6, 9).
+$theme-color-accent: $theme-color-bg !default;
 // Foreground color at medium brightness.
-$theme-color-fg: rgb(225, 240, 255);
+$theme-color-fg: rgb(225, 240, 255) !default;
+// Size of controls at OBS's default "Normal" density. Every size below is derived from it, and
+// scripts/build.js makes all of them follow Settings > Appearance > Density at runtime
+// (Classic 16px, Compact 19px, Normal 22px, Comfortable 25px). Keep size math linear in this value.
+$theme-size-controls: 22px !default;
 // Size of a title bar (only used for QDockWidget)
-$theme-size-titlebar: 25px;
+$theme-size-titlebar: $theme-size-controls + 3px;
 // Size of a menu bar.
-$theme-size-menubar: 22px;
+$theme-size-menubar: $theme-size-controls;
 // Size of a status bar.
-$theme-size-statusbar: 22px;
-// Size of controls.
-$theme-size-controls: 22px;
+$theme-size-statusbar: $theme-size-controls;
+// Width of scroll bars.
+$theme-size-scrollbar: $theme-size-controls - 4px;
 // Curve of elements.
 $theme-curve-radius: 1px;
 // Font and font sizes.
 $theme-font: "Roboto", "Segoe UI", "Malgun Gothic", sans-serif;
+// Font size at OBS's default Font Size setting (10); it scales with that setting at runtime.
 $theme-font-size: 13px;
 
 //--------------------------------------------------------------------------------//
@@ -45,98 +52,151 @@ $theme-font-size: 13px;
 //--------------------------------------------------------------------------------//
 
 // QWindow, QDockWidget
-$theme-layer0-bg-lum: .1;
-$theme-layer0-bg-sat: 1.3;
-$theme-layer0-fg-lum: 1;
-$theme-layer0-fg-sat: 1;
+$theme-layer0-bg-lum: .1 !default;
+$theme-layer0-bg-sat: 1.3 !default;
+$theme-layer0-fg-lum: 1 !default;
+$theme-layer0-fg-sat: 1 !default;
 // QStatusBar, QMenuBar
-$theme-layer1-bg-lum: .25;
-$theme-layer1-bg-sat: 1.2;
-$theme-layer1-fg-lum: 1;
-$theme-layer1-fg-sat: 1;
+$theme-layer1-bg-lum: .25 !default;
+$theme-layer1-bg-sat: 1.2 !default;
+$theme-layer1-fg-lum: 1 !default;
+$theme-layer1-fg-sat: 1 !default;
 // 
-$theme-layer2-bg-lum: .33;
-$theme-layer2-bg-sat: 1.1;
-$theme-layer2-fg-lum: 1;
-$theme-layer2-fg-sat: 1;
+$theme-layer2-bg-lum: .33 !default;
+$theme-layer2-bg-sat: 1.1 !default;
+$theme-layer2-fg-lum: 1 !default;
+$theme-layer2-fg-sat: 1 !default;
 // QComboBox DropDown, QTabWidget
-$theme-layer3-bg-lum: .5;
-$theme-layer3-bg-sat: 1;
-$theme-layer3-fg-lum: 1;
-$theme-layer3-fg-sat: 1;
+$theme-layer3-bg-lum: .5 !default;
+$theme-layer3-bg-sat: 1 !default;
+$theme-layer3-fg-lum: 1 !default;
+$theme-layer3-fg-sat: 1 !default;
 // QComboBox DropDown
-$theme-layer4-bg-lum: .67;
-$theme-layer4-bg-sat: 1;
-$theme-layer4-fg-lum: 1.5;
-$theme-layer4-fg-sat: 1;
+$theme-layer4-bg-lum: .67 !default;
+$theme-layer4-bg-sat: 1 !default;
+$theme-layer4-fg-lum: 1.5 !default;
+$theme-layer4-fg-sat: 1 !default;
 // QPushButton, QMenu::item
-$theme-layer5-bg-lum: .75;
-$theme-layer5-bg-sat: 1;
-$theme-layer5-fg-lum: 1.5;
-$theme-layer5-fg-sat: 1;
+$theme-layer5-bg-lum: .75 !default;
+$theme-layer5-bg-sat: 1 !default;
+$theme-layer5-fg-lum: 1.5 !default;
+$theme-layer5-fg-sat: 1 !default;
 // Active Sub-controls
-$theme-layer6-bg-lum: 1;
-$theme-layer6-bg-sat: 1;
-$theme-layer6-fg-lum: 1.5;
-$theme-layer6-fg-sat: 1;
+$theme-layer6-bg-lum: 1 !default;
+$theme-layer6-bg-sat: 1 !default;
+$theme-layer6-fg-lum: 1.5 !default;
+$theme-layer6-fg-sat: 1 !default;
 // QDockWidget::title
-$theme-layer9-bg-lum: 1;
-$theme-layer9-bg-sat: .8;
-$theme-layer9-fg-lum: 0;
-$theme-layer9-fg-sat: 0;
+$theme-layer9-bg-lum: 1 !default;
+$theme-layer9-bg-sat: .8 !default;
+$theme-layer9-fg-lum: 0 !default;
+$theme-layer9-fg-sat: 0 !default;
 
-$theme-disabled-lum: .5;
-$theme-disabled-sat: .75;
-$theme-hover-lum: 1.25;
-$theme-hover-sat: 1;
-$theme-focus-lum: 1.25;
-$theme-focus-sat: 1;
-$theme-active-lum: 1.125;
-$theme-active-sat: .8;
-$theme-pressed-lum: .75;
-$theme-pressed-sat: 1.2;
+$theme-disabled-lum: .5 !default;
+$theme-disabled-sat: .75 !default;
+// Disabled text. Separate from the background so light styles can fade dark text towards the background.
+$theme-disabled-fg-lum: $theme-disabled-lum !default;
+$theme-disabled-fg-sat: $theme-disabled-sat !default;
+$theme-hover-lum: 1.25 !default;
+$theme-hover-sat: 1 !default;
+$theme-focus-lum: 1.25 !default;
+$theme-focus-sat: 1 !default;
+$theme-active-lum: 1.125 !default;
+$theme-active-sat: .8 !default;
+$theme-pressed-lum: .75 !default;
+$theme-pressed-sat: 1.2 !default;
 
-// Images
-$image-zero: url(./OceanBlue/zero.svg);
-$image-checkmark-unknown: url(./OceanBlue/indicator_indeterminate.svg);
-$image-checkmark-off: url(./OceanBlue/indicator_unchecked.svg);
-$image-checkmark-on: url(./OceanBlue/indicator_checked.svg);
-$image-arrow-left: url(./OceanBlue/arrow_left.svg);
-$image-arrow-left2: url(./OceanBlue/arrow_left_twice.svg);
-$image-arrow-right: url(./OceanBlue/arrow_right.svg);
-$image-arrow-right2: url(./OceanBlue/arrow_right_twice.svg);
-$image-arrow-up: url(./OceanBlue/arrow_up.svg);
-$image-arrow-up2: url(./OceanBlue/arrow_up_twice.svg);
-$image-arrow-down: url(./OceanBlue/arrow_down.svg);
-$image-arrow-down2: url(./OceanBlue/arrow_down_twice.svg);
-$image-dot: url(./OceanBlue/dot.svg);
-$image-lock-open: url(./OceanBlue/lock_open.svg);
-$image-lock-closed: url(./OceanBlue/lock_closed.svg);
-$image-eye-open: url(./OceanBlue/eye_open.svg);
-$image-eye-closed: url(./OceanBlue/eye_closed.svg);
-$image-audio-muted: url(./OceanBlue/audio_muted.svg);
-$image-audio-unmuted: url(./OceanBlue/audio_unmuted.svg);
-$image-btn-minimize: url(./OceanBlue/window_minimize.svg);
-$image-btn-maximize: url(./OceanBlue/window_maximize.svg);
-$image-btn-restore: url(./OceanBlue/window_restore.svg);
-$image-btn-close: url(./OceanBlue/window_close.svg);
-$image-btn-plus: url(./OceanBlue/plus.svg);
-$image-btn-minus: url(./OceanBlue/minus.svg);
-$image-btn-gear: url(./OceanBlue/gear.svg);
-$image-btn-trash: url(./OceanBlue/trash.svg);
-$image-btn-undo: url(./OceanBlue/undo.svg);
-$image-settings-general: url(./OceanBlue/settings_general.svg);
-$image-settings-stream: url(./OceanBlue/settings_stream.svg);
-$image-settings-output: url(./OceanBlue/settings_output.svg);
-$image-settings-video: url(./OceanBlue/settings_video.svg);
-$image-settings-audio: url(./OceanBlue/settings_audio.svg);
-$image-settings-hotkeys: url(./OceanBlue/settings_hotkeys.svg);
-$image-settings-advanced: url(./OceanBlue/settings_advanced.svg);
+// Images (scripts/build.js also writes dark copies to "theme:Retratic/light" for light styles)
+$theme-images: "theme:Retratic" !default;
+$image-zero: url(#{$theme-images}/zero.svg);
+$image-checkmark-unknown: url(#{$theme-images}/indicator_indeterminate.svg);
+$image-checkmark-off: url(#{$theme-images}/indicator_unchecked.svg);
+$image-checkmark-on: url(#{$theme-images}/indicator_checked.svg);
+$image-arrow-left: url(#{$theme-images}/arrow_left.svg);
+$image-arrow-left2: url(#{$theme-images}/arrow_left_twice.svg);
+$image-arrow-right: url(#{$theme-images}/arrow_right.svg);
+$image-arrow-right2: url(#{$theme-images}/arrow_right_twice.svg);
+$image-arrow-up: url(#{$theme-images}/arrow_up.svg);
+$image-arrow-up2: url(#{$theme-images}/arrow_up_twice.svg);
+$image-arrow-down: url(#{$theme-images}/arrow_down.svg);
+$image-arrow-down2: url(#{$theme-images}/arrow_down_twice.svg);
+$image-dot: url(#{$theme-images}/dot.svg);
+$image-lock-open: url(#{$theme-images}/lock_open.svg);
+$image-lock-closed: url(#{$theme-images}/lock_closed.svg);
+$image-eye-open: url(#{$theme-images}/eye_open.svg);
+$image-eye-closed: url(#{$theme-images}/eye_closed.svg);
+$image-audio-muted: url(#{$theme-images}/audio_muted.svg);
+$image-audio-unmuted: url(#{$theme-images}/audio_unmuted.svg);
+$image-btn-minimize: url(#{$theme-images}/window_minimize.svg);
+$image-btn-maximize: url(#{$theme-images}/window_maximize.svg);
+$image-btn-restore: url(#{$theme-images}/window_restore.svg);
+$image-btn-close: url(#{$theme-images}/window_close.svg);
+$image-btn-plus: url(#{$theme-images}/plus.svg);
+$image-btn-minus: url(#{$theme-images}/minus.svg);
+$image-btn-gear: url(#{$theme-images}/gear.svg);
+$image-btn-trash: url(#{$theme-images}/trash.svg);
+$image-btn-undo: url(#{$theme-images}/undo.svg);
+$image-settings-general: url(#{$theme-images}/settings_general.svg);
+$image-settings-stream: url(#{$theme-images}/settings_stream.svg);
+$image-settings-output: url(#{$theme-images}/settings_output.svg);
+$image-settings-video: url(#{$theme-images}/settings_video.svg);
+$image-settings-audio: url(#{$theme-images}/settings_audio.svg);
+$image-settings-hotkeys: url(#{$theme-images}/settings_hotkeys.svg);
+$image-settings-advanced: url(#{$theme-images}/settings_advanced.svg);
+
+// OBS Studio 30+ theme metadata and variables; must be the first output in the file.
+// scripts/build.js overrides these per color variant.
+$theme-name: "Retratic" !default;
+$theme-id: "com.xaymar.Retratic" !default;
+$theme-extends: null !default;
+$theme-dark: true !default;
+@OBSThemeMeta {
+    name: "#{$theme-name}";
+    id: "#{$theme-id}";
+    @if $theme-extends {
+        extends: "#{$theme-extends}";
+    }
+    author: "Xaymar";
+    dark: "#{$theme-dark}";
+}
+
+// Qt palette, used by every widget Ocean Blue doesn't style itself.
+@OBSThemeVars {
+    // Density setting: obsPadding is 0.25 / 2 / 4 / 6 for Classic / Compact / Normal / Comfortable.
+    // build.js expresses every size-dependent value as a calc() on this.
+    --size_controls: calc(16px + calc(1.5 * var(--obsPadding)));
+    // Font Size setting (Settings > Appearance). OBS only enables the setting when a variable uses it.
+    --font_base: calc(#{math.div($theme-font-size, 10)} * var(--obsFontScale));
+    --font_small: calc(#{math.div($theme-font-size * 0.75, 10)} * var(--obsFontScale));
+    --palette_window: #{varRGB(yuv709cc($theme-color-bg, $theme-layer0-bg-lum, $theme-layer0-bg-sat))};
+    --palette_windowText: #{varRGB(yuv709cc($theme-color-fg, $theme-layer0-fg-lum, $theme-layer0-fg-sat))};
+    --palette_base: #{varRGB(yuv709cc($theme-color-bg, $theme-layer1-bg-lum, $theme-layer1-bg-sat))};
+    --palette_alternateBase: #{varRGB(yuv709cc($theme-color-bg, $theme-layer2-bg-lum, $theme-layer2-bg-sat))};
+    --palette_text: #{varRGB(yuv709cc($theme-color-fg, $theme-layer1-fg-lum, $theme-layer1-fg-sat))};
+    --palette_button: #{varRGB(yuv709cc($theme-color-accent, $theme-layer5-bg-lum, $theme-layer5-bg-sat))};
+    --palette_buttonText: #{varRGB(yuv709cc($theme-color-fg, $theme-layer5-fg-lum, $theme-layer5-fg-sat))};
+    --palette_brightText: #{varRGB(yuv709cc($theme-color-fg, $theme-layer6-fg-lum, $theme-layer6-fg-sat))};
+    --palette_highlight: #{varRGB(yuv709cc($theme-color-accent, $theme-layer6-bg-lum, $theme-layer6-bg-sat))};
+    --palette_highlightedText: #{varRGB(yuv709cc($theme-color-fg, $theme-layer6-fg-lum, $theme-layer6-fg-sat))};
+    --palette_shadow: #{varRGB(yuv709cc($theme-color-bg, $theme-layer0-bg-lum, $theme-layer0-bg-sat))};
+    --palette_dark: #{varRGB(yuv709cc($theme-color-bg, $theme-layer1-bg-lum, $theme-layer1-bg-sat))};
+    --palette_mid: #{varRGB(yuv709cc($theme-color-bg, $theme-layer2-bg-lum, $theme-layer2-bg-sat))};
+    --palette_midlight: #{varRGB(yuv709cc($theme-color-bg, $theme-layer3-bg-lum, $theme-layer3-bg-sat))};
+    --palette_light: #{varRGB(yuv709cc($theme-color-bg, $theme-layer4-bg-lum, $theme-layer4-bg-sat))};
+    --palette_link: #{varRGB(yuv709cc($theme-color-accent, $theme-layer6-bg-lum * $theme-hover-lum, $theme-layer6-bg-sat))};
+    --palette_linkVisited: #{varRGB(yuv709cc($theme-color-accent, $theme-layer6-bg-lum, $theme-layer6-bg-sat))};
+    --palette_toolTipBase: #{varRGB(yuv709cc($theme-color-bg, $theme-layer3-bg-lum, $theme-layer3-bg-sat))};
+    --palette_toolTipText: #{varRGB(yuv709cc($theme-color-fg, $theme-layer3-fg-lum, $theme-layer3-fg-sat))};
+    --palette_placeholderText: #{varRGB(yuv709cc($theme-color-fg, $theme-disabled-fg-lum, $theme-disabled-fg-sat))};
+    --palette_windowText_disabled: #{varRGB(yuv709cc($theme-color-fg, $theme-disabled-fg-lum, $theme-disabled-fg-sat))};
+    --palette_text_disabled: #{varRGB(yuv709cc($theme-color-fg, $theme-disabled-fg-lum, $theme-disabled-fg-sat))};
+    --palette_buttonText_disabled: #{varRGB(yuv709cc($theme-color-fg, $theme-disabled-fg-lum, $theme-disabled-fg-sat))};
+}
 
 // Set up default fonts.
 * {
     font-family: $theme-font;
-    font-size: $theme-font-size;
+    font-size: var(--font_base);
 //	background-color: transparent;
 //	border-color: transparent;
 }
@@ -209,14 +269,17 @@ OBSTheme::inactive {
 @import "qt/QWindow.scss";
 @import "qt/QDockWidget.scss";
 @import "qt/QMenu.scss";
+@import "qt/QToolTip.scss";
 //- Info/Control Bars
 @import "qt/QStatusBar.scss";
 @import "qt/QMenuBar.scss";
 //- Grouping Controls
 @import "qt/QTabWidget.scss";
 @import "qt/QGroupBox.scss";
+@import "qt/QScrollArea.scss";
 //- Active Controls
 @import "qt/QPushButton.scss";
+@import "qt/QToolButton.scss";
 @import "qt/QRadioButton.scss";
 @import "qt/QCheckBox.scss";
 @import "qt/QComboBox.scss";
@@ -227,17 +290,23 @@ OBSTheme::inactive {
 //@import "qt/QWidget.scss";
 //@import "qt/QListWidget.scss";
 // Passive Controls
-//@import "qt/QScrollBar.scss";
+@import "qt/QScrollBar.scss";
 //@import "qt/QSplitter.scss";
 // Active Controls
-//@import "qt/QSlider.scss";
+@import "qt/QSlider.scss";
 
 // OBS
+@import "obs/OBSIcons.scss";
+@import "obs/OBSDocks.scss";
+@import "obs/OBSPreview.scss";
+@import "obs/OBSStatusBar.scss";
+@import "obs/OBSBasicSettings.scss";
+@import "obs/OBSSourceTree.scss";
+@import "obs/OBSMixer.scss";
 //@import "obs/obstheme.scss";
 //@import "obs/obsextra.scss";
 //@import "obs/obsdocks.scss";
 //@import "obs/OBSBasicAdvAudio.scss";
-//@import "obs/OBSBasicSettings.scss";
 //@import "obs/OBSHotKeyEdit.scss";
 //@import "obs/OBSQtDisplay.scss";
 //@import "obs/OBSPropertiesView.scss";

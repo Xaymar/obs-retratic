@@ -1,0 +1,22 @@
+// Icon-only buttons: no background until hovered, so they never end up white on white.
+QToolButton {
+	margin: 0px;
+	padding: 2px;
+	border: 0px solid transparent;
+	border-radius: $theme-curve-radius;
+	background-color: transparent;
+	color: yuv709cc($theme-color-fg, $theme-layer5-fg-lum, $theme-layer5-fg-sat);
+
+	&:hover,
+	&:focus {
+		background-color: yuv709cc($theme-color-accent, $theme-layer5-bg-lum * $theme-hover-lum, $theme-layer5-bg-sat * $theme-hover-sat);
+		color: yuv709cc($theme-color-fg, $theme-layer5-fg-lum * $theme-hover-lum, $theme-layer5-fg-sat * $theme-hover-sat);
+	}
+	&:pressed,
+	&:checked {
+		background-color: yuv709cc($theme-color-accent, $theme-layer5-bg-lum * $theme-pressed-lum, $theme-layer5-bg-sat * $theme-pressed-sat);
+	}
+	&:disabled {
+		color: yuv709cc($theme-color-fg, $theme-layer5-fg-lum * $theme-disabled-fg-lum, $theme-layer5-fg-sat * $theme-disabled-fg-sat);
+	}
+}

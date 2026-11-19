@@ -1,0 +1,13 @@
+// Scroll areas (settings pages, OBSPropertiesView) fill their viewport and content widget
+// with the opaque palette window color, which hides the translucent layering of QGroupBox.
+QScrollArea,
+QScrollArea > QWidget,
+QScrollArea > QWidget > QWidget {
+	background: transparent;
+}
+
+// Scroll areas and lists otherwise get Qt's native 1px light frame (seen around the mixer and
+// inside docks). Widgets that want a border (QLineEdit.scss, QComboBox.scss) set it later.
+QAbstractScrollArea {
+	border: 0px solid transparent;
+}

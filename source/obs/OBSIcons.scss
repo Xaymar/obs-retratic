@@ -1,0 +1,115 @@
+// Icons and OBS-specific widget properties. A standalone theme has to set these itself,
+// otherwise OBS shows buttons without icons. Icons Retratic doesn't ship come from
+// the light-on-dark "Dark" icon set bundled with OBS Studio.
+
+// OBS ships "theme:Light" with the same icons for light styles.
+$obs-icons: "theme:Dark" !default;
+
+// Toolbar and generic button icons (class names used by OBS).
+$icon-classes: (
+	"plus": $image-btn-plus,
+	"minus": $image-btn-minus,
+	"trash": $image-btn-trash,
+	"gear": $image-btn-gear,
+	"revert": $image-btn-undo,
+	"clear": url(#{$obs-icons}/entry-clear.svg),
+	"dots-vert": url(#{$obs-icons}/dots-vert.svg),
+	"refresh": url(#{$obs-icons}/refresh.svg),
+	"cogs": url(#{$obs-icons}/cogs.svg),
+	"touch": url(#{$obs-icons}/interact.svg),
+	"up": $image-arrow-up,
+	"down": $image-arrow-down,
+	"filter": url(#{$obs-icons}/filter.svg),
+	"save": url(#{$obs-icons}/save.svg),
+	"media-play": url(#{$obs-icons}/media/media_play.svg),
+	"media-pause": url(#{$obs-icons}/media/media_pause.svg),
+	"media-restart": url(#{$obs-icons}/media/media_restart.svg),
+	"media-stop": url(#{$obs-icons}/media/media_stop.svg),
+	"media-next": url(#{$obs-icons}/media/media_next.svg),
+	"media-prev": url(#{$obs-icons}/media/media_previous.svg),
+);
+@each $name, $image in $icon-classes {
+	.icon-#{$name} {
+		qproperty-icon: $image;
+	}
+}
+
+// Checkbox-style toggles in the scene and source lists.
+$indicator-classes: (
+	// OBS checks this box when the group is collapsed.
+	"expand": ($image-arrow-right, $image-arrow-down),
+	"lock": ($image-lock-closed, $image-lock-open),
+	"visibility": ($image-eye-open, $image-eye-closed),
+);
+@each $name, $images in $indicator-classes {
+	.indicator-#{$name} {
+		background: transparent;
+		outline: none;
+
+		&::indicator:checked {
+			image: nth($images, 1);
+		}
+		&::indicator:unchecked {
+			image: nth($images, 2);
+		}
+	}
+}
+.checkbox-icon {
+	outline: none;
+	background: transparent;
+}
+
+OBSBasicSettings {
+	qproperty-generalIcon: $image-settings-general;
+	qproperty-appearanceIcon: url(#{$obs-icons}/settings/appearance.svg);
+	qproperty-streamIcon: $image-settings-stream;
+	qproperty-outputIcon: $image-settings-output;
+	qproperty-audioIcon: $image-settings-audio;
+	qproperty-videoIcon: $image-settings-video;
+	qproperty-hotkeysIcon: $image-settings-hotkeys;
+	qproperty-accessibilityIcon: url(#{$obs-icons}/settings/accessibility.svg);
+	qproperty-advancedIcon: $image-settings-advanced;
+}
+
+// Source type icons.
+$source-icons: (
+	"image": "sources/image",
+	"color": "sources/brush",
+	"slideshow": "sources/slideshow",
+	"audioInput": "sources/microphone",
+	"audioOutput": "settings/audio",
+	"desktopCap": "settings/video",
+	"windowCap": "sources/window",
+	"gameCap": "sources/gamepad",
+	"camera": "sources/camera",
+	"text": "sources/text",
+	"media": "sources/media",
+	"browser": "sources/globe",
+	"group": "sources/group",
+	"scene": "sources/scene",
+	"default": "sources/default",
+	"audioProcessOutput": "sources/windowaudio",
+);
+OBSBasic {
+	@each $name, $file in $source-icons {
+		qproperty-#{$name}Icon: url(#{$obs-icons}/#{$file}.svg);
+	}
+}
+
+OBSMissingFiles {
+	qproperty-warningIcon: url(#{$obs-icons}/alert.svg);
+}
+
+#contextContainer QPushButton#sourcePropertiesButton {
+	qproperty-icon: $image-btn-gear;
+}
+#contextContainer QPushButton#sourceFiltersButton {
+	qproperty-icon: url(#{$obs-icons}/filter.svg);
+}
+#contextContainer QPushButton#sourceInteractButton {
+	qproperty-icon: url(#{$obs-icons}/interact.svg);
+}
+
+OBSQTDisplay {
+	qproperty-displayBackgroundColor: yuv709cc($theme-color-bg, $theme-layer0-bg-lum * $theme-pressed-lum, $theme-layer0-bg-sat);
+}

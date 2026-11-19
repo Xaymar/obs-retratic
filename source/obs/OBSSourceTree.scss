@@ -1,0 +1,49 @@
+// Scene and Source list rows share the unified control height.
+QListWidget::item {
+	min-height: $theme-size-controls;
+	padding: 0px 3px;
+}
+// Source rows are sized by SourceTreeItem's size hint, which ignores its own min-height and
+// padding (a min-height there makes the row overlap its neighbors). The icon toggles below are
+// what set the row height instead.
+
+// Icon toggles (expand, visibility, lock) show only their icon, not a checkbox frame.
+$icon-indicators: ".checkbox-icon", ".indicator-expand", ".indicator-lock", ".indicator-visibility";
+@each $class in $icon-indicators {
+	QCheckBox#{$class} {
+		min-width: 0px;
+		min-height: $theme-size-controls;
+
+		&::indicator,
+		&::indicator:focus,
+		&::indicator:pressed {
+			margin: 0px;
+			padding: 1px;
+			width: $theme-size-controls - 6px;
+			height: $theme-size-controls - 6px;
+			border: 0px solid transparent;
+			border-radius: $theme-curve-radius;
+			background-color: transparent;
+		}
+		&::indicator:hover {
+			background-color: yuv709cc($theme-color-accent, $theme-layer5-bg-lum * $theme-hover-lum, $theme-layer5-bg-sat * $theme-hover-sat);
+		}
+	}
+}
+
+// OBS indents group members with a fixed 16px spacer. Make the group's expand toggle exactly
+// 16px wide too, so the group's icon lines up with its members' icons.
+QCheckBox.indicator-expand {
+	// Qt adds label spacing to a checkbox's width even without a label.
+	spacing: 0px;
+
+	&::indicator,
+	&::indicator:hover,
+	&::indicator:focus,
+	&::indicator:pressed {
+		padding: 0px;
+		width: 16px;
+		// Full row height, so the narrow toggle is still easy to hit; the arrow image keeps its aspect.
+		height: $theme-size-controls;
+	}
+}

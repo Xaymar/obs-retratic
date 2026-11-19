@@ -1,9 +1,15 @@
 @use "sass:color";
 @use "sass:list";
 @use "sass:math";
+@use "sass:string";
 
 @function asRGB($anycolor) {
 	@return rgb(color.red($anycolor), color.green($anycolor), color.blue($anycolor));
+};
+
+// OBS theme variables only accept "rgb(r, g, b)" with integers or 6-digit hex.
+@function varRGB($anycolor) {
+	@return string.unquote("rgb(#{math.round(color.red($anycolor))}, #{math.round(color.green($anycolor))}, #{math.round(color.blue($anycolor))})");
 };
 
 @function yuv709($y, $u, $v) {
@@ -23,14 +29,30 @@
 };
 
 // Convert from YUV709 to RGB
+// Out-of-gamut results keep their hue and luma: chroma is scaled down until every channel fits,
+// instead of clipping channels one by one (which shifted the hue differently per layer).
 @function fromYUV709($yuv) {
-	$y: list.nth($yuv, 1);
+	$y: math.clamp(0, list.nth($yuv, 1), 1);
 	$u: list.nth($yuv, 2);
 	$v: list.nth($yuv, 3);
-	$r: $y + $v * 1.57480;
-	$g: $y + $u * -0.18732 + $v * -0.46812;
-	$b: $y + $u * 1.85560;
-	@return rgba($r * 255, $g * 255, $b * 255, list.nth($yuv, 4));
+	$rgb: ($y + $v * 1.57480, $y + $u * -0.18732 + $v * -0.46812, $y + $u * 1.85560);
+	$t: 1;
+	@each $c in $rgb {
+		@if $c < 0 {
+			$t: math.min($t, math.div($y, $y - $c));
+		} @else if $c > 1 {
+			$t: math.min($t, math.div(1 - $y, $c - $y));
+		}
+	}
+	$out: ();
+	@each $c in $rgb {
+		$c: $y + ($c - $y) * $t;
+		@if $c < -0.0001 or $c > 1.0001 {
+			@error "fromYUV709: channel #{$c} out of range after gamut mapping.";
+		}
+		$out: list.append($out, math.clamp(0, $c, 1) * 255);
+	}
+	@return rgba(list.nth($out, 1), list.nth($out, 2), list.nth($out, 3), list.nth($yuv, 4));
 }
 
 // Convert from RGB to YUV709

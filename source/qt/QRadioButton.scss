@@ -12,7 +12,7 @@ QRadioButton {
 	}
 
 	&:disabled {
-		color: yuv709cc($theme-color-fg, $theme-layer5-fg-lum * $theme-disabled-lum, $theme-layer5-fg-sat * $theme-disabled-sat);
+		color: yuv709cc($theme-color-fg, $theme-layer5-fg-lum * $theme-disabled-fg-lum, $theme-layer5-fg-sat * $theme-disabled-fg-sat);
 	}
 
 	&::indicator {
@@ -23,9 +23,9 @@ QRadioButton {
 		padding: $padding;
 		width: $theme-size-controls - ($margin + $padding) * 2;
 		height: $theme-size-controls - ($margin + $padding) * 2;
-		border: $border inset yuv709cc($theme-color-bg, $theme-layer5-bg-lum * $theme-pressed-lum, $theme-layer5-bg-sat * $theme-pressed-sat);
+		border: $border inset yuv709cc($theme-color-accent, $theme-layer5-bg-lum * $theme-pressed-lum, $theme-layer5-bg-sat * $theme-pressed-sat);
 		border-radius: math.div($theme-size-controls - ($margin + $padding + $border), 2);
-		background-color: yuv709cc($theme-color-bg, $theme-layer5-bg-lum * $theme-pressed-lum, $theme-layer5-bg-sat * $theme-pressed-sat);
+		background-color: yuv709cc($theme-color-accent, $theme-layer5-bg-lum * $theme-pressed-lum, $theme-layer5-bg-sat * $theme-pressed-sat);
 		color: yuv709cc($theme-color-fg, $theme-layer5-fg-lum, $theme-layer5-fg-sat);
 	}
 
@@ -40,20 +40,20 @@ QRadioButton {
 	&::indicator:hover,
 	&::indicator:focus {
 		border-style: outset;
-		border-color: yuv709cc($theme-color-bg, $theme-layer5-bg-lum * $theme-focus-lum, $theme-layer5-bg-sat * $theme-focus-sat);
-		background-color: yuv709cc($theme-color-bg, $theme-layer5-bg-lum * $theme-focus-lum, $theme-layer5-bg-sat * $theme-focus-sat);
+		border-color: yuv709cc($theme-color-accent, $theme-layer5-bg-lum * $theme-focus-lum, $theme-layer5-bg-sat * $theme-focus-sat);
+		background-color: yuv709cc($theme-color-accent, $theme-layer5-bg-lum * $theme-focus-lum, $theme-layer5-bg-sat * $theme-focus-sat);
 		color: yuv709cc($theme-color-fg, $theme-layer5-fg-lum * $theme-focus-lum, $theme-layer5-fg-sat * $theme-focus-sat);
 	}
 
 	&::indicator:pressed {
-		border-color: yuv709cc($theme-color-bg, $theme-layer5-bg-lum * $theme-active-lum, $theme-layer5-bg-sat * $theme-active-sat);
-		background-color: yuv709cc($theme-color-bg, $theme-layer5-bg-lum * $theme-active-lum, $theme-layer5-bg-sat * $theme-active-sat);
+		border-color: yuv709cc($theme-color-accent, $theme-layer5-bg-lum * $theme-active-lum, $theme-layer5-bg-sat * $theme-active-sat);
+		background-color: yuv709cc($theme-color-accent, $theme-layer5-bg-lum * $theme-active-lum, $theme-layer5-bg-sat * $theme-active-sat);
 		color: yuv709cc($theme-color-fg, $theme-layer5-fg-lum * $theme-active-lum, $theme-layer5-fg-sat * $theme-active-sat);
 	}
 
 	&::indicator:disabled {
-		border-color: yuv709cc($theme-color-bg, $theme-layer5-bg-lum * $theme-disabled-lum, $theme-layer5-bg-sat * $theme-disabled-sat);
-		background-color: yuv709cc($theme-color-bg, $theme-layer5-bg-lum * $theme-disabled-lum, $theme-layer5-bg-sat * $theme-disabled-sat);
-		color: yuv709cc($theme-color-fg, $theme-layer5-fg-lum * $theme-disabled-lum, $theme-layer5-fg-sat * $theme-disabled-sat);
+		border-color: yuv709cc($theme-color-accent, $theme-layer5-bg-lum * $theme-disabled-lum, $theme-layer5-bg-sat * $theme-disabled-sat);
+		background-color: yuv709cc($theme-color-accent, $theme-layer5-bg-lum * $theme-disabled-lum, $theme-layer5-bg-sat * $theme-disabled-sat);
+		color: yuv709cc($theme-color-fg, $theme-layer5-fg-lum * $theme-disabled-fg-lum, $theme-layer5-fg-sat * $theme-disabled-fg-sat);
 	}
 }
