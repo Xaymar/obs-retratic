@@ -26,6 +26,8 @@ QPushButton.btn-monitor {
 	border: 0px solid transparent;
 	border-radius: $theme-curve-radius;
 	background-color: transparent;
+	// OBS tints these icons with the button's text color, and the buttons sit on the dock background.
+	color: yuv709cc($theme-color-fg, $theme-layer5-fg-lum, $theme-layer5-fg-sat);
 
 	&:hover,
 	&:focus {

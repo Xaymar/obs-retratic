@@ -13,30 +13,30 @@ QPlainTextEdit {
 	min-height: contentHeight($theme-size-controls, $margin, $padding, $border);
 	border-color: yuv709cc($theme-color-accent, $theme-layer5-bg-lum, $theme-layer5-bg-sat);
 	background-color: yuv709cc($theme-color-accent, $theme-layer5-bg-lum, $theme-layer5-bg-sat);
-	color: yuv709cc($theme-color-fg, $theme-layer5-fg-lum, $theme-layer5-fg-sat);
+	color: yuv709cc($theme-color-accent-fg, $theme-layer5-fg-lum, $theme-layer5-fg-sat);
 
 	selection-background-color: yuv709cc($theme-color-accent, $theme-layer5-bg-lum, $theme-layer5-bg-sat);
-	selection-color: yuv709cc($theme-color-fg, $theme-layer5-fg-lum, $theme-layer5-fg-sat);
+	selection-color: yuv709cc($theme-color-accent-fg, $theme-layer5-fg-lum, $theme-layer5-fg-sat);
 	placeholder-text-color: yuv709cc($theme-color-fg, $theme-layer5-fg-lum * $theme-disabled-fg-lum, $theme-layer5-fg-sat * $theme-disabled-fg-sat);
 
 	&:focus {
 		border-style: inset;
 		border-color: yuv709cc($theme-color-accent, $theme-layer5-bg-lum * $theme-focus-lum, $theme-layer5-bg-sat * $theme-focus-sat);
 		background-color: yuv709cc($theme-color-accent, $theme-layer5-bg-lum * $theme-focus-lum, $theme-layer5-bg-sat * $theme-focus-sat);
-		color: yuv709cc($theme-color-fg, $theme-layer5-fg-lum * $theme-focus-lum, $theme-layer5-fg-sat * $theme-focus-sat);
+		color: yuv709cc($theme-color-accent-fg, $theme-layer5-fg-lum * $theme-focus-lum, $theme-layer5-fg-sat * $theme-focus-sat);
 	}
 	
 	&:hover {
 		border-style: inset;
 		border-color: yuv709cc($theme-color-accent, $theme-layer5-bg-lum * $theme-hover-lum, $theme-layer5-bg-sat * $theme-hover-sat);
 		background-color: yuv709cc($theme-color-accent, $theme-layer5-bg-lum * $theme-hover-lum, $theme-layer5-bg-sat * $theme-hover-sat);
-		color: yuv709cc($theme-color-fg, $theme-layer5-fg-lum * $theme-hover-lum, $theme-layer5-fg-sat * $theme-hover-sat);
+		color: yuv709cc($theme-color-accent-fg, $theme-layer5-fg-lum * $theme-hover-lum, $theme-layer5-fg-sat * $theme-hover-sat);
 	}
 
 	&:read-only {
 		border-color: yuv709cc($theme-color-accent, $theme-layer5-bg-lum * $theme-disabled-lum, $theme-layer5-bg-sat * $theme-disabled-sat);
 		background-color: yuv709cc($theme-color-accent, $theme-layer5-bg-lum * $theme-disabled-lum, $theme-layer5-bg-sat * $theme-disabled-sat);
-		color: yuv709cc($theme-color-fg, $theme-layer5-fg-lum, $theme-layer5-fg-sat);
+		color: yuv709cc($theme-color-accent-fg, $theme-layer5-fg-lum, $theme-layer5-fg-sat);
 	}
 
 	&:disabled {

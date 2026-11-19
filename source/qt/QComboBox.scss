@@ -10,10 +10,10 @@ QComboBox {
 	min-width: contentWidth($theme-size-controls, $margin, $padding, $border);
 	min-height: contentHeight($theme-size-controls, $margin, $padding, $border);
 	background-color: yuv709cc($theme-color-accent, $theme-layer5-bg-lum, $theme-layer5-bg-sat);
-	color: yuv709cc($theme-color-fg, $theme-layer5-fg-lum, $theme-layer5-fg-sat);
+	color: yuv709cc($theme-color-accent-fg, $theme-layer5-fg-lum, $theme-layer5-fg-sat);
 
 	selection-background-color: yuv709cc($theme-color-accent, $theme-layer5-bg-lum, $theme-layer5-bg-sat);
-	selection-color: yuv709cc($theme-color-fg, $theme-layer5-fg-lum, $theme-layer5-fg-sat);
+	selection-color: yuv709cc($theme-color-accent-fg, $theme-layer5-fg-lum, $theme-layer5-fg-sat);
 
 	&::down-arrow {
 		$margin: 0px;
@@ -35,18 +35,18 @@ QComboBox {
 
 	&:focus {
 		background-color: yuv709cc($theme-color-accent, $theme-layer5-bg-lum * $theme-focus-lum, $theme-layer5-bg-sat * $theme-focus-sat);
-		color: yuv709cc($theme-color-fg, $theme-layer5-fg-lum * $theme-focus-lum, $theme-layer5-fg-sat * $theme-focus-sat);
+		color: yuv709cc($theme-color-accent-fg, $theme-layer5-fg-lum * $theme-focus-lum, $theme-layer5-fg-sat * $theme-focus-sat);
 	}
 	
 	&:hover {
 		background-color: yuv709cc($theme-color-accent, $theme-layer5-bg-lum * $theme-hover-lum, $theme-layer5-bg-sat * $theme-hover-sat);
-		color: yuv709cc($theme-color-fg, $theme-layer5-fg-lum * $theme-hover-lum, $theme-layer5-fg-sat * $theme-hover-sat);
+		color: yuv709cc($theme-color-accent-fg, $theme-layer5-fg-lum * $theme-hover-lum, $theme-layer5-fg-sat * $theme-hover-sat);
 	}
 
 	&:on,
 	&:pressed {
 		background-color: yuv709cc($theme-color-accent, $theme-layer5-bg-lum * $theme-pressed-lum, $theme-layer5-bg-sat * $theme-pressed-sat);
-		color: yuv709cc($theme-color-fg, $theme-layer5-fg-lum, $theme-layer5-fg-sat);
+		color: yuv709cc($theme-color-accent-fg, $theme-layer5-fg-lum, $theme-layer5-fg-sat);
 	}
 
 	&:disabled {
@@ -69,17 +69,17 @@ QComboBox {
 		height: contentHeight($theme-size-controls, $margin, $padding, $border);
 
 		background-color: yuv709cc($theme-color-accent, $theme-layer6-bg-lum, $theme-layer6-bg-sat);
-		color: yuv709cc($theme-color-fg, $theme-layer6-fg-lum, $theme-layer6-fg-sat);
+		color: yuv709cc($theme-color-accent-fg, $theme-layer6-fg-lum, $theme-layer6-fg-sat);
 
 		&:hover {
 			background-color: yuv709cc($theme-color-accent, $theme-layer6-bg-lum * $theme-hover-lum, $theme-layer6-bg-sat * $theme-hover-sat);
-			color: yuv709cc($theme-color-fg, $theme-layer6-fg-lum * $theme-hover-lum, $theme-layer6-fg-sat * $theme-hover-sat);
+			color: yuv709cc($theme-color-accent-fg, $theme-layer6-fg-lum * $theme-hover-lum, $theme-layer6-fg-sat * $theme-hover-sat);
 		}
 
 		&:on,
 		&:pressed {
 			background-color: yuv709cc($theme-color-accent, $theme-layer6-bg-lum * $theme-pressed-lum, $theme-layer6-bg-sat * $theme-pressed-sat);
-			color: yuv709cc($theme-color-fg, $theme-layer6-fg-lum, $theme-layer6-fg-sat);
+			color: yuv709cc($theme-color-accent-fg, $theme-layer6-fg-lum, $theme-layer6-fg-sat);
 		}
 
 		&:disabled {
@@ -98,7 +98,7 @@ QComboBox {
 		color: yuv709cc($theme-color-fg, $theme-layer3-fg-lum, $theme-layer3-fg-sat);
 
 		selection-background-color: yuv709cc($theme-color-accent, $theme-layer6-bg-lum, $theme-layer6-bg-sat);
-		selection-color: yuv709cc($theme-color-fg, $theme-layer6-fg-lum, $theme-layer6-fg-sat);
+		selection-color: yuv709cc($theme-color-accent-fg, $theme-layer6-fg-lum, $theme-layer6-fg-sat);
 
 		// Popup entries use the unified control height like everything else.
 		&::item {
@@ -108,7 +108,7 @@ QComboBox {
 			&:selected,
 			&:hover {
 				background-color: yuv709cc($theme-color-accent, $theme-layer6-bg-lum, $theme-layer6-bg-sat);
-				color: yuv709cc($theme-color-fg, $theme-layer6-fg-lum, $theme-layer6-fg-sat);
+				color: yuv709cc($theme-color-accent-fg, $theme-layer6-fg-lum, $theme-layer6-fg-sat);
 			}
 		}
 	}

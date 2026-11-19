@@ -3,7 +3,8 @@ QDockWidget {
 	padding: 0px;
 	border: 0px solid transparent;
 	background-color: yuv709cc($theme-color-bg, $theme-layer0-bg-lum, $theme-layer0-bg-sat);
-	color: yuv709cc($theme-color-fg, $theme-layer0-fg-lum, $theme-layer0-fg-sat);
+	// Qt draws the title text in the dock's own color, on the highlight-colored title bar.
+	color: yuv709cc($theme-color-accent-fg, $theme-layer0-fg-lum, $theme-layer0-fg-sat);
 	titlebar-close-icon: $image-btn-close;
 	titlebar-normal-icon: $image-btn-restore;
 
@@ -20,7 +21,7 @@ QDockWidget {
 		border: 0px solid transparent;
 		border-radius: $theme-curve-radius;
 		background-color: yuv709cc($theme-color-accent, $theme-layer9-bg-lum, $theme-layer9-bg-sat);
-		color: yuv709cc($theme-color-fg, $theme-layer9-fg-lum, $theme-layer9-fg-sat);
+		color: yuv709cc($theme-color-accent-fg, $theme-layer9-fg-lum, $theme-layer9-fg-sat);
 		vertical-align: center;
 		text-align: center;
 	
@@ -44,12 +45,12 @@ QDockWidget {
 		// No :focus here; the buttons would stay lit while anything in the dock has focus.
 		&:hover {
 			background-color: yuv709cc($theme-color-accent, $theme-layer5-bg-lum * $theme-hover-lum, $theme-layer5-bg-sat * $theme-hover-sat);
-			color: yuv709cc($theme-color-fg, $theme-layer5-fg-lum * $theme-hover-lum, $theme-layer5-fg-sat * $theme-hover-sat);
+			color: yuv709cc($theme-color-accent-fg, $theme-layer5-fg-lum * $theme-hover-lum, $theme-layer5-fg-sat * $theme-hover-sat);
 		}
 		
 		&:pressed {
 			background-color: yuv709cc($theme-color-accent, $theme-layer5-bg-lum * $theme-pressed-lum, $theme-layer5-bg-sat * $theme-pressed-sat);
-			color: yuv709cc($theme-color-fg, $theme-layer5-fg-lum, $theme-layer5-fg-sat);
+			color: yuv709cc($theme-color-accent-fg, $theme-layer5-fg-lum, $theme-layer5-fg-sat);
 		}
 		
 		&:disabled {
@@ -57,4 +58,9 @@ QDockWidget {
 			color: yuv709cc($theme-color-fg, $theme-layer5-fg-lum * $theme-disabled-fg-lum, $theme-layer5-fg-sat * $theme-disabled-fg-sat);
 		}
 	}
+}
+
+// The dock contents inherit the dock's color, so give them the normal text color back.
+QDockWidget > QWidget {
+	color: yuv709cc($theme-color-fg, $theme-layer0-fg-lum, $theme-layer0-fg-sat);
 }

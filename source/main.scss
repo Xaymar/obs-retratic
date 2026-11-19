@@ -28,6 +28,8 @@ $theme-color-bg: hsl(212, 100%, 50%) !default;
 $theme-color-accent: $theme-color-bg !default;
 // Foreground color at medium brightness.
 $theme-color-fg: rgb(225, 240, 255) !default;
+// Text drawn on top of the highlight color (buttons, inputs, selections, dock titles).
+$theme-color-accent-fg: $theme-color-fg !default;
 // Size of controls at OBS's default "Normal" density. Every size below is derived from it, and
 // scripts/build.js makes all of them follow Settings > Appearance > Density at runtime
 // (Classic 16px, Compact 19px, Normal 22px, Comfortable 25px). Keep size math linear in this value.
@@ -174,10 +176,11 @@ $theme-dark: true !default;
     --palette_alternateBase: #{varRGB(yuv709cc($theme-color-bg, $theme-layer2-bg-lum, $theme-layer2-bg-sat))};
     --palette_text: #{varRGB(yuv709cc($theme-color-fg, $theme-layer1-fg-lum, $theme-layer1-fg-sat))};
     --palette_button: #{varRGB(yuv709cc($theme-color-accent, $theme-layer5-bg-lum, $theme-layer5-bg-sat))};
+    // Stays the normal text color: OBS uses it for transparent buttons and to tint icons (mixer names, mute/monitor).
     --palette_buttonText: #{varRGB(yuv709cc($theme-color-fg, $theme-layer5-fg-lum, $theme-layer5-fg-sat))};
-    --palette_brightText: #{varRGB(yuv709cc($theme-color-fg, $theme-layer6-fg-lum, $theme-layer6-fg-sat))};
+    --palette_brightText: #{varRGB(yuv709cc($theme-color-accent-fg, $theme-layer6-fg-lum, $theme-layer6-fg-sat))};
     --palette_highlight: #{varRGB(yuv709cc($theme-color-accent, $theme-layer6-bg-lum, $theme-layer6-bg-sat))};
-    --palette_highlightedText: #{varRGB(yuv709cc($theme-color-fg, $theme-layer6-fg-lum, $theme-layer6-fg-sat))};
+    --palette_highlightedText: #{varRGB(yuv709cc($theme-color-accent-fg, $theme-layer6-fg-lum, $theme-layer6-fg-sat))};
     --palette_shadow: #{varRGB(yuv709cc($theme-color-bg, $theme-layer0-bg-lum, $theme-layer0-bg-sat))};
     --palette_dark: #{varRGB(yuv709cc($theme-color-bg, $theme-layer1-bg-lum, $theme-layer1-bg-sat))};
     --palette_mid: #{varRGB(yuv709cc($theme-color-bg, $theme-layer2-bg-lum, $theme-layer2-bg-sat))};

@@ -26,7 +26,7 @@ QMenu {
 	
 		&:selected {
 			background-color: yuv709cc($theme-color-accent, $theme-layer5-bg-lum * $theme-hover-lum, $theme-layer5-bg-sat * $theme-hover-sat);
-			color: yuv709cc($theme-color-fg, $theme-layer5-fg-lum * $theme-hover-lum, $theme-layer5-fg-sat * $theme-hover-sat);
+			color: yuv709cc($theme-color-accent-fg, $theme-layer5-fg-lum * $theme-hover-lum, $theme-layer5-fg-sat * $theme-hover-sat);
 		}
 		
 		&:disabled {
@@ -96,7 +96,7 @@ QMenu QCheckBox {
 	&:hover,
 	&:focus {
 		background-color: yuv709cc($theme-color-accent, $theme-layer5-bg-lum * $theme-hover-lum, $theme-layer5-bg-sat * $theme-hover-sat);
-		color: yuv709cc($theme-color-fg, $theme-layer5-fg-lum * $theme-hover-lum, $theme-layer5-fg-sat * $theme-hover-sat);
+		color: yuv709cc($theme-color-accent-fg, $theme-layer5-fg-lum * $theme-hover-lum, $theme-layer5-fg-sat * $theme-hover-sat);
 	}
 
 	&::indicator,

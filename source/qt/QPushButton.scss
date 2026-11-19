@@ -11,7 +11,7 @@ QPushButton {
 	min-height: contentHeight($theme-size-controls, $margin, $padding, $border);
 	border-color: yuv709cc($theme-color-accent, $theme-layer5-bg-lum, $theme-layer5-bg-sat);
 	background-color: yuv709cc($theme-color-accent, $theme-layer5-bg-lum, $theme-layer5-bg-sat);
-	color: yuv709cc($theme-color-fg, $theme-layer5-fg-lum, $theme-layer5-fg-sat);
+	color: yuv709cc($theme-color-accent-fg, $theme-layer5-fg-lum, $theme-layer5-fg-sat);
 
 	&:checked {
 		image: $image-checkmark-on;
@@ -31,13 +31,13 @@ QPushButton {
 	&:hover, &:focus {
 		border-color: yuv709cc($theme-color-accent, $theme-layer5-bg-lum * $theme-hover-lum, $theme-layer5-bg-sat * $theme-hover-sat);
 		background-color: yuv709cc($theme-color-accent, $theme-layer5-bg-lum * $theme-hover-lum, $theme-layer5-bg-sat * $theme-hover-sat);
-		color: yuv709cc($theme-color-fg, $theme-layer5-fg-lum * $theme-hover-lum, $theme-layer5-fg-sat * $theme-hover-sat);
+		color: yuv709cc($theme-color-accent-fg, $theme-layer5-fg-lum * $theme-hover-lum, $theme-layer5-fg-sat * $theme-hover-sat);
 	}
 
 	&:pressed {
 		border-color: yuv709cc($theme-color-accent, $theme-layer5-bg-lum * $theme-pressed-lum, $theme-layer5-bg-sat * $theme-pressed-sat);
 		background-color: yuv709cc($theme-color-accent, $theme-layer5-bg-lum * $theme-pressed-lum, $theme-layer5-bg-sat * $theme-pressed-sat);
-		color: yuv709cc($theme-color-fg, $theme-layer5-fg-lum, $theme-layer5-fg-sat);
+		color: yuv709cc($theme-color-accent-fg, $theme-layer5-fg-lum, $theme-layer5-fg-sat);
 	}
 
 	&:flat:pressed {
