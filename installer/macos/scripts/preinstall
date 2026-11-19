@@ -1,0 +1,8 @@
+#!/bin/sh
+# Remove what a previous version installed, so renamed or dropped styles don't linger.
+# $2 is the install location (the user's themes folder).
+themes="$2"
+[ -n "$themes" ] || exit 0
+rm -f "$themes/Retratic.obt" "$themes"/Retratic_*.ovt
+rm -rf "$themes/Retratic"
+exit 0

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<installer-gui-script minSpecVersion="2">
+	<title>Retratic for OBS Studio</title>
+	<!-- Per-user install only: themes go to ~/Library/Application Support/obs-studio/themes. -->
+	<domains enable_anywhere="false" enable_currentUserHome="true" enable_localSystem="false"/>
+	<options customize="never" require-scripts="false" hostArchitectures="x86_64,arm64"/>
+	<conclusion mime-type="text/plain"><![CDATA[Retratic has been installed. Restart OBS Studio, then pick Retratic under Settings > Appearance.]]></conclusion>
+	<choices-outline>
+		<line choice="default">
+			<line choice="com.xaymar.retratic"/>
+		</line>
+	</choices-outline>
+	<choice id="default"/>
+	<choice id="com.xaymar.retratic" visible="false">
+		<pkg-ref id="com.xaymar.retratic"/>
+	</choice>
+	<pkg-ref id="com.xaymar.retratic">retratic.pkg</pkg-ref>
+</installer-gui-script>

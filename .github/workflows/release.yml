@@ -1,0 +1,106 @@
+# Builds the installers for every pushed tag and attaches them to a GitHub release.
+# The tag is the version ("v" prefix optional), e.g. 1.2.0 or 2026-11-19.
+name: Release
+
+on:
+  push:
+    tags: ["*"]
+
+permissions:
+  contents: write
+
+jobs:
+  theme:
+    runs-on: ubuntu-latest
+    outputs:
+      version: ${{ steps.version.outputs.version }}
+      numeric: ${{ steps.version.outputs.numeric }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - id: version
+        name: Version from tag
+        run: |
+          version="${GITHUB_REF_NAME#v}"
+          # Windows version info needs four numbers: take the tag's digit groups, pad with zeros.
+          numeric=$(echo "$version" | tr -cs '0-9' ' ' | awk '{ printf "%d.%d.%d.%d", $1, $2, $3, $4 }')
+          echo "version=$version" >> "$GITHUB_OUTPUT"
+          echo "numeric=$numeric" >> "$GITHUB_OUTPUT"
+      - run: npm ci
+      - run: npm run distrib
+      - uses: actions/upload-artifact@v4
+        with:
+          name: distrib
+          path: distrib/
+
+  windows:
+    needs: theme
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          name: distrib
+          path: distrib/
+      - name: Build installer
+        shell: pwsh
+        run: |
+          & "${env:ProgramFiles(x86)}\Inno Setup 6\ISCC.exe" /Q "/DVersion=${{ needs.theme.outputs.version }}" "/DVersionNumeric=${{ needs.theme.outputs.numeric }}" installer\windows\retratic.iss
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+      - uses: actions/upload-artifact@v4
+        with:
+          name: windows
+          path: installers/*.exe
+
+  macos:
+    needs: theme
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          name: distrib
+          path: distrib/
+      - run: sh installer/macos/build.sh "${{ needs.theme.outputs.version }}"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: macos
+          path: installers/*.pkg
+
+  linux:
+    needs: theme
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          name: distrib
+          path: package/retratic/themes/
+      - name: Build archive
+        run: |
+          cp installer/linux/install.sh package/retratic/
+          chmod +x package/retratic/install.sh
+          mkdir -p installers
+          tar -czf "installers/retratic-${{ needs.theme.outputs.version }}-linux.tar.gz" -C package retratic
+      - uses: actions/upload-artifact@v4
+        with:
+          name: linux
+          path: installers/*.tar.gz
+
+  release:
+    needs: [theme, windows, macos, linux]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          path: installers/
+          merge-multiple: true
+      - name: Publish release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release view "$GITHUB_REF_NAME" --repo "$GITHUB_REPOSITORY" > /dev/null 2>&1 \
+            || gh release create "$GITHUB_REF_NAME" --repo "$GITHUB_REPOSITORY" --title "$GITHUB_REF_NAME" --generate-notes
+          gh release upload "$GITHUB_REF_NAME" installers/*.exe installers/*.pkg installers/*.tar.gz --repo "$GITHUB_REPOSITORY" --clobber

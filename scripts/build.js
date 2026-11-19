@@ -55,6 +55,8 @@ if (mode === "install") {
         targetPath = path.join(process.env.HOME, ".config", "obs-studio", "themes");
     }
 }
+// build/ and distrib/ are pure outputs: start empty so renamed or dropped styles don't ship.
+if (mode === "build" || mode === "distrib") fs.rmSync(targetPath, { recursive: true, force: true });
 fs.mkdirSync(targetPath, { recursive: true });
 
 const source = path.join(process.cwd(), "source");

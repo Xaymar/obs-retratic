@@ -134,25 +134,25 @@ You really wish you didn't go wandering in the forest. A dark mode theme with si
 ## Guides
 <details><summary>Installing</summary>
 
-Requires OBS Studio 30 or newer (tested against the 33.0 theme format).
+Requires OBS Studio 30 or newer (tested against the 33.0 theme format). Download the file for your system from the [releases](https://github.com/Xaymar/obs-retratic/releases), then:
 
-1. Download the theme version matching your OBS Studio version from [here](https://github.com/Xaymar/obs-retratic/releases).
-2. Extract the archive **into** the following location(s):
-    - On *Windows*: `%AppData%/obs-studio/themes/`
-    - On *Linux*: `${HOME}/.config/obs-studio/themes/`
-    - On *MacOS*: `~/Library/Application Support/obs-studio/themes/`
-3. Restart OBS Studio.
-4. In *Settings > Appearance*, pick *Retratic* as the Theme and one of its colors as the Style.
-5. Profit!
+- **Windows**: run `retratic-<version>-windows.exe`. It installs for your user only, no administrator rights needed.
+- **MacOS**: open `retratic-<version>-macos.pkg`; it installs for your user only. The package isn't signed yet, so if macOS refuses to open it, right-click it and choose *Open*.
+- **Linux**: extract `retratic-<version>-linux.tar.gz` and run `./retratic/install.sh`. For the OBS Studio Flatpak, run `./retratic/install.sh --flatpak` instead.
+
+Afterwards:
+1. Restart OBS Studio.
+2. In *Settings > Appearance*, pick *Retratic* as the Theme and one of its colors as the Style.
+3. Profit!
 </details>
 
 <details><summary>Uninstalling</summary>
 
 1. Stop OBS Studio.
-2. Remove `Retratic.obt`, the `Retratic_*.ovt` files and the `Retratic` folder from the following location(s):
-    - On *Windows*: `%AppData%/obs-studio/themes/`
-    - On *Linux*: `${HOME}/.config/obs-studio/themes/`
-    - On *MacOS*: `~/Library/Application Support/obs-studio/themes/`
+2. Remove the theme:
+    - On *Windows*: uninstall *Retratic for OBS Studio* from *Settings > Apps*.
+    - On *MacOS*: remove `Retratic.obt`, the `Retratic_*.ovt` files and the `Retratic` folder from `~/Library/Application Support/obs-studio/themes/`.
+    - On *Linux*: run `./retratic/install.sh --uninstall` (add `--flatpak` for the Flatpak).
 3. Start OBS Studio.
 4. ???
 5. Profit.
