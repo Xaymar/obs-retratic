@@ -1,0 +1,31 @@
+@use "sass:math";
+@use "sass:color";
+@use "sass:string";
+// Re-styles one window (a dock or a dialog) with the current $theme-color-* values, on top of the
+// main stylesheet. Used by Clown Car, where every window gets its own colors. Set before importing:
+//   $window: the window's selector, e.g. "QDockWidget#scenesDock" or "OBSBasicSettings".
+//   $window-dock: true for docks (title bar and content background).
+// Popups (menus, tooltips, dropdown lists) are separate top-level windows and keep the main colors.
+
+#{$window} {
+	background-color: yuv709cc($theme-color-bg, $theme-layer0-bg-lum, $theme-layer0-bg-sat);
+	color: yuv709cc($theme-color-fg, $theme-layer0-fg-lum, $theme-layer0-fg-sat);
+
+	@import "components.scss";
+}
+
+@if $window-dock {
+	#{$window} {
+		// Qt draws the title text in the dock's own color, on the highlight-colored title bar.
+		color: yuv709cc($theme-color-accent-fg, $theme-layer0-fg-lum, $theme-layer0-fg-sat);
+
+		&::title {
+			background-color: yuv709cc($theme-color-accent, $theme-layer9-bg-lum, $theme-layer9-bg-sat);
+		}
+
+		& > QWidget {
+			background-color: color.adjust(yuv709cc($theme-color-bg, $theme-layer3-bg-lum, $theme-layer3-bg-sat), $alpha: -.75);
+			color: yuv709cc($theme-color-fg, $theme-layer0-fg-lum, $theme-layer0-fg-sat);
+		}
+	}
+}

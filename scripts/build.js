@@ -44,6 +44,29 @@ const themes = [
     { file: "Retratic_DesertDunes.ovt", vars: { ...LIGHT, "theme-name": "Desert Dunes", "theme-id": "com.xaymar.Retratic.DesertDunes", "theme-layer0-bg-sat": 0.3, "theme-layer1-bg-sat": 0.4, "theme-layer2-bg-sat": 0.45, "theme-layer3-bg-sat": 0.5, "theme-layer4-bg-sat": 0.6, "theme-color-bg": "hsl(44, 75%, 45%)", "theme-color-accent": "hsl(15, 65%, 50%)", "theme-color-fg": "rgb(60, 40, 25)" } },
 ];
 
+// Clown Car: Ocean Blue, but every dock and dialog borrows the colors of another (dark) style.
+const colorsOf = (file) => {
+    const v = themes.find((t) => t.file === file).vars;
+    const bg = v["theme-color-bg"], fg = v["theme-color-fg"];
+    return { bg, fg, accent: v["theme-color-accent"] ?? bg, "accent-fg": v["theme-color-accent-fg"] ?? fg };
+};
+themes.push({
+    file: "Retratic_ClownCar.ovt",
+    vars: { "theme-name": "Clown Car", "theme-id": "com.xaymar.Retratic.ClownCar" },
+    windows: [
+        ["QDockWidget#scenesDock", true, colorsOf("Retratic_PumpkinPatch.ovt")],
+        ["QDockWidget#sourcesDock", true, colorsOf("Retratic_DruidsCamp.ovt")],
+        ["QDockWidget#mixerDock", true, colorsOf("Retratic_Synthwave.ovt")],
+        ["QDockWidget#transitionsDock", true, colorsOf("Retratic_TropicalLagoon.ovt")],
+        ["QDockWidget#controlsDock", true, colorsOf("Retratic_VampiresCastle.ovt")],
+        ["OBSBasicSettings", false, colorsOf("Retratic_RoyalCourt.ovt")],
+        ["OBSBasicProperties", false, colorsOf("Retratic_WitchsBrew.ovt")],
+        ["OBSBasicFilters", false, colorsOf("Retratic_NightSky.ovt")],
+        ["OBSBasicAdvAudio", false, colorsOf("Retratic_EmberForge.ovt")],
+        ["OBSBasicTransform", false, colorsOf("Retratic_AutumnWoods.ovt")],
+    ],
+});
+
 const mode = process.argv[2] || "build";
 let targetPath = path.join(process.cwd(), mode);
 if (mode === "install") {
@@ -119,7 +142,11 @@ for (const theme of themes) {
     // Colors, numbers and booleans are Sass values, everything else is a string.
     const prefix = Object.entries(vars).map(([k, v]) => `$${k}: ${k.startsWith("theme-color") || typeof v !== "string" ? v : JSON.stringify(v)};\n`).join("");
     // Not compressed: OBS's @OBSThemeMeta parser expects every value to end in ";".
-    const css = densify((size) => sass.compileString(`${prefix}$theme-size-controls: ${size}px;\n@import "main";`, { loadPaths: [source] }).css);
+    // Per-window restyles (Clown Car), compiled after the main sheet so they take precedence.
+    const windows = (theme.windows ?? []).map(([selector, dock, c]) =>
+        Object.entries(c).map(([k, v]) => `$theme-color-${k}: ${v};\n`).join("") +
+        `$window: ${JSON.stringify(selector)};\n$window-dock: ${dock};\n@import "window";\n`).join("");
+    const css = densify((size) => sass.compileString(`${prefix}$theme-size-controls: ${size}px;\n@import "main";\n${windows}`, { loadPaths: [source] }).css);
     fs.writeFileSync(path.join(targetPath, theme.file), css, { flag: "w+" });
 }
 const images = path.join(targetPath, "Retratic");

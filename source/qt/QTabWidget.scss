@@ -69,12 +69,9 @@ QTabWidget {
 				min-width: contentWidth($theme-size-controls, $margin, $padding, $border);
 				min-height: contentHeight($theme-size-controls, $margin, $padding, $border);
 
-				border-color: yuv709cc($theme-color-bg, $theme-layer3-bg-lum, $theme-layer3-bg-sat);
-				background-color: #{"qlineargradient(x1: 0, y1: 0, x1: 0, y2: 1"},
-					#{"stop: 0.5"} yuv709cc($theme-color-bg, $theme-layer3-bg-lum * $theme-focus-lum, $theme-layer3-bg-sat * $theme-focus-sat),
-					#{"stop: 1 "} color.adjust(yuv709cc($theme-color-bg, $theme-layer3-bg-lum, $theme-layer3-bg-sat), $alpha: -.5)
-					#{")"};
-				color: yuv709cc($theme-color-fg, $theme-layer3-fg-lum, $theme-layer3-fg-sat);
+				border-color: yuv709cc($theme-color-accent, $theme-layer9-bg-lum, $theme-layer9-bg-sat);
+				background-color: yuv709cc($theme-color-accent, $theme-layer9-bg-lum, $theme-layer9-bg-sat);
+				color: yuv709cc($theme-color-accent-fg, $theme-layer0-fg-lum, $theme-layer0-fg-sat);
 			}
 
 			&:only-one {

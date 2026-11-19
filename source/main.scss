@@ -267,49 +267,5 @@ OBSTheme::inactive {
 	linkVisited: asRGB($theme-color-link);
 }*/
 
-// Components
-//- Window Containers
-@import "qt/QWindow.scss";
-@import "qt/QDockWidget.scss";
-@import "qt/QMenu.scss";
-@import "qt/QToolTip.scss";
-//- Info/Control Bars
-@import "qt/QStatusBar.scss";
-@import "qt/QMenuBar.scss";
-//- Grouping Controls
-@import "qt/QTabWidget.scss";
-@import "qt/QGroupBox.scss";
-@import "qt/QScrollArea.scss";
-//- Active Controls
-@import "qt/QPushButton.scss";
-@import "qt/QToolButton.scss";
-@import "qt/QRadioButton.scss";
-@import "qt/QCheckBox.scss";
-@import "qt/QComboBox.scss";
-@import "qt/QSpinBox.scss";
-@import "qt/QLineEdit.scss";
-
-// Containers
-//@import "qt/QWidget.scss";
-//@import "qt/QListWidget.scss";
-// Passive Controls
-@import "qt/QScrollBar.scss";
-//@import "qt/QSplitter.scss";
-// Active Controls
-@import "qt/QSlider.scss";
-
-// OBS
-@import "obs/OBSIcons.scss";
-@import "obs/OBSDocks.scss";
-@import "obs/OBSPreview.scss";
-@import "obs/OBSStatusBar.scss";
-@import "obs/OBSBasicSettings.scss";
-@import "obs/OBSSourceTree.scss";
-@import "obs/OBSMixer.scss";
-//@import "obs/obstheme.scss";
-//@import "obs/obsextra.scss";
-//@import "obs/obsdocks.scss";
-//@import "obs/OBSBasicAdvAudio.scss";
-//@import "obs/OBSHotKeyEdit.scss";
-//@import "obs/OBSQtDisplay.scss";
-//@import "obs/OBSPropertiesView.scss";
+// Components (also compiled per window by window.scss)
+@import "components.scss";

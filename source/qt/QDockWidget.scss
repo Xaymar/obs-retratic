@@ -60,6 +60,36 @@ QDockWidget {
 	}
 }
 
+// Tabs for docks stacked on top of each other; the bar belongs to the main window, not the dock.
+QMainWindow > QTabBar {
+	background-color: transparent;
+
+	&::tab {
+		margin: 0px 2px 0px 0px;
+		padding: 0px 8px;
+		min-height: $theme-size-controls;
+		border: 0px solid transparent;
+		border-radius: $theme-curve-radius;
+		background-color: color.adjust(yuv709cc($theme-color-bg, $theme-layer3-bg-lum, $theme-layer3-bg-sat), $alpha: -.75);
+		color: yuv709cc($theme-color-fg, $theme-layer3-fg-lum, $theme-layer3-fg-sat);
+
+		&:hover {
+			background-color: yuv709cc($theme-color-accent, $theme-layer5-bg-lum * $theme-hover-lum, $theme-layer5-bg-sat * $theme-hover-sat);
+			color: yuv709cc($theme-color-accent-fg, $theme-layer5-fg-lum * $theme-hover-lum, $theme-layer5-fg-sat * $theme-hover-sat);
+		}
+
+		&:selected {
+			background-color: yuv709cc($theme-color-accent, $theme-layer9-bg-lum, $theme-layer9-bg-sat);
+			// Same text color as the dock title bar, which Qt draws in the dock's own color.
+			color: yuv709cc($theme-color-accent-fg, $theme-layer0-fg-lum, $theme-layer0-fg-sat);
+		}
+
+		&:last {
+			margin-right: 0px;
+		}
+	}
+}
+
 // The dock contents inherit the dock's color, so give them the normal text color back.
 QDockWidget > QWidget {
 	color: yuv709cc($theme-color-fg, $theme-layer0-fg-lum, $theme-layer0-fg-sat);
