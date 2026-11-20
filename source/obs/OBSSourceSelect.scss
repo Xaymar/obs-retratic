@@ -1,0 +1,59 @@
+// Add Source dialog (OBS 32+): one card per existing source, with a thumbnail and name.
+SourceSelectButton {
+	margin: 2px;
+	padding: 2px;
+	border: 1px solid yuv709cc($theme-color-bg, $theme-layer3-bg-lum, $theme-layer3-bg-sat);
+	border-radius: $theme-curve-radius;
+	background-color: yuv709cc($theme-color-bg, $theme-layer2-bg-lum, $theme-layer2-bg-sat);
+	color: yuv709cc($theme-color-fg, $theme-layer2-fg-lum, $theme-layer2-fg-sat);
+	outline: none;
+
+	QLabel {
+		background-color: transparent;
+		color: yuv709cc($theme-color-fg, $theme-layer2-fg-lum, $theme-layer2-fg-sat);
+	}
+
+	#thumbnail {
+		background-color: yuv709cc($theme-color-bg, $theme-layer0-bg-lum, $theme-layer0-bg-sat);
+		border: none;
+	}
+
+	&:hover, &:focus {
+		border-color: yuv709cc($theme-color-accent, $theme-layer5-bg-lum * $theme-hover-lum, $theme-layer5-bg-sat * $theme-hover-sat);
+		background-color: yuv709cc($theme-color-accent, $theme-layer5-bg-lum, $theme-layer5-bg-sat);
+	}
+
+	&:checked {
+		border-color: yuv709cc($theme-color-accent, $theme-layer6-bg-lum * $theme-hover-lum, $theme-layer6-bg-sat);
+		background-color: yuv709cc($theme-color-accent, $theme-layer6-bg-lum, $theme-layer6-bg-sat);
+	}
+
+	&:hover QLabel, &:focus QLabel, &:checked QLabel {
+		color: yuv709cc($theme-color-accent-fg, $theme-layer6-fg-lum, $theme-layer6-fg-sat);
+	}
+
+	&:pressed {
+		border-color: yuv709cc($theme-color-accent, $theme-layer5-bg-lum * $theme-pressed-lum, $theme-layer5-bg-sat * $theme-pressed-sat);
+		background-color: yuv709cc($theme-color-accent, $theme-layer5-bg-lum * $theme-pressed-lum, $theme-layer5-bg-sat * $theme-pressed-sat);
+	}
+}
+
+// Separate the type list (left) from the source area (right) as two panels.
+OBSBasicSourceSelect {
+	#selectTypeFrame, #selectSourceFrame {
+		// OBS lays both out with zero spacing; the margin gives them a gap (and room from the dialog edge).
+		margin: 4px;
+		border: 1px solid yuv709cc($theme-color-bg, $theme-layer3-bg-lum, $theme-layer3-bg-sat);
+		border-radius: $theme-curve-radius;
+		background-color: yuv709cc($theme-color-bg, $theme-layer1-bg-lum, $theme-layer1-bg-sat);
+	}
+
+	#sourceTypeList, #existingScrollArea, #existingScrollContents, #existingListFrame {
+		border: none;
+		background-color: transparent;
+	}
+
+	#sourceSelectTitle {
+		font-weight: bold;
+	}
+}
