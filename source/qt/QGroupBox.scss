@@ -35,8 +35,14 @@ QGroupBox {
 
 	&:disabled {
 		border-color: color.adjust(yuv709cc($theme-color-bg, $theme-layer3-bg-lum * $theme-disabled-lum, $theme-layer3-bg-sat * $theme-disabled-sat), $alpha: -.5);
-		background-color: color.adjust(yuv709cc($theme-color-bg, $theme-layer3-bg-lum * $theme-disabled-lum, $theme-layer3-bg-sat * $theme-disabled-sat), $alpha: -.25);
+		background-color: color.adjust(yuv709cc($theme-color-bg, $theme-layer3-bg-lum * $theme-disabled-lum, $theme-layer3-bg-sat * $theme-disabled-sat), $alpha: -.75);
 		color: yuv709cc($theme-color-fg, $theme-layer3-fg-lum * $theme-disabled-fg-lum, $theme-layer3-fg-sat * $theme-disabled-fg-sat);
+	}
+
+	&::title:disabled {
+		border-color: yuv709cc($theme-color-accent, $theme-layer9-bg-lum * $theme-disabled-lum, $theme-layer9-bg-sat * $theme-disabled-sat);
+		background-color: yuv709cc($theme-color-accent, $theme-layer9-bg-lum * $theme-disabled-lum, $theme-layer9-bg-sat * $theme-disabled-sat);
+		color: yuv709cc($theme-color-accent-fg, $theme-layer0-fg-lum * $theme-disabled-fg-lum, $theme-layer0-fg-sat * $theme-disabled-fg-sat);
 	}
 }
 

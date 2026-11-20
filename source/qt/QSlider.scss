@@ -21,6 +21,7 @@ QSlider {
 		background-color: yuv709cc($theme-color-bg, $theme-layer2-bg-lum * $theme-pressed-lum, $theme-layer2-bg-sat * $theme-pressed-sat);
 
 		&:disabled {
+			border-color: yuv709cc($theme-color-accent, $theme-layer5-bg-lum * $theme-pressed-lum * $theme-disabled-lum, $theme-layer5-bg-sat * $theme-pressed-sat * $theme-disabled-sat);
 			background-color: yuv709cc($theme-color-bg, $theme-layer2-bg-lum * $theme-disabled-lum, $theme-layer2-bg-sat * $theme-disabled-sat);
 		}
 	}
@@ -37,6 +38,11 @@ QSlider {
 		border: 1px inset yuv709cc($theme-color-accent, $theme-layer5-bg-lum * $theme-pressed-lum, $theme-layer5-bg-sat * $theme-pressed-sat);
 		border-radius: $theme-curve-radius;
 		background-color: yuv709cc($theme-color-accent, $theme-layer5-bg-lum * $theme-pressed-lum, $theme-layer5-bg-sat * $theme-pressed-sat);
+	}
+	&::sub-page:horizontal:disabled,
+	&::add-page:vertical:disabled {
+		border-color: yuv709cc($theme-color-accent, $theme-layer5-bg-lum * $theme-pressed-lum * $theme-disabled-lum, $theme-layer5-bg-sat * $theme-pressed-sat * $theme-disabled-sat);
+		background-color: yuv709cc($theme-color-accent, $theme-layer5-bg-lum * $theme-pressed-lum * $theme-disabled-lum, $theme-layer5-bg-sat * $theme-pressed-sat * $theme-disabled-sat);
 	}
 
 	&::handle {

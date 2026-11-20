@@ -8,3 +8,9 @@ QDialog {
 		color: yuv709cc($theme-color-fg, $theme-layer0-fg-lum * $theme-disabled-fg-lum, $theme-layer0-fg-sat * $theme-disabled-fg-sat);
 	}
 }
+
+// The window color above reaches child labels through their palette, for every state, so
+// disabled labels would keep full-strength text without their own rule.
+QLabel:disabled {
+	color: yuv709cc($theme-color-fg, $theme-layer0-fg-lum * $theme-disabled-fg-lum, $theme-layer0-fg-sat * $theme-disabled-fg-sat);
+}
